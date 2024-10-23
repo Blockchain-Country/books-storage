@@ -46,8 +46,10 @@ describe('BookForm Component Tests', () => {
     fireEvent.click(submitBookBtn)
 
     // Verify that the book is added to the book list
-    const newBook = within(bookListComponent).getByText(bookTitleName)
-    expect(newBook).toBeInTheDocument()
+    const newBookTitle = within(bookListComponent).getByText(bookTitleName)
+    const newBookAuthor = within(bookListComponent).getByText(bookAuthorName)
+    expect(newBookTitle).toBeInTheDocument()
+    expect(newBookAuthor).toBeInTheDocument()
   })
 })
 
