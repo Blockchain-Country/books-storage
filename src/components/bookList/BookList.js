@@ -20,7 +20,7 @@ const BookList = () => {
             <p data-testid="no_books_sign">No books in my list...</p>
           ) : (
             books.map((book, i) => (
-              <li key={book.id}>
+              <li key={book.id} data-testid={book.id}>
                 <div className="book-info">
                   <span>{++i}. </span>
                   <span>{book.title}</span>
@@ -30,7 +30,10 @@ const BookList = () => {
                   </span>
                 </div>
                 <div className="book-actions">
-                  <button onClick={() => handleDeleteBook(book.id)}>
+                  <button
+                    onClick={() => handleDeleteBook(book.id)}
+                    data-testid="delete_book_btn"
+                  >
                     Delete
                   </button>
                 </div>

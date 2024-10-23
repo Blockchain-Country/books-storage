@@ -1,4 +1,5 @@
 import { fireEvent, within, screen } from '@testing-library/react'
+import { v4 as uuidv4 } from 'uuid'
 import booksReducer from '../../redux/slices/BooksSlice'
 import { setup } from '../../setupTests'
 import store from '../../redux/store'
@@ -6,6 +7,7 @@ import App from '../../App'
 
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'
+const bookId = uuidv4()
 
 let titleInput, authorInput, submitBookBtn, bookListComponent
 
@@ -57,8 +59,10 @@ describe('Redux Store Tests', () => {
   test('Should manually add a book to the store', () => {
     let state = booksReducer([], {
       type: 'books/addBook',
-      payload: { title: bookTitleName, author: bookAuthorName },
+      payload: { title: bookTitleName, author: bookAuthorName, id: bookId },
     })
-    expect(state).toEqual([{ title: bookTitleName, author: bookAuthorName }])
+    expect(state).toEqual([
+      { title: bookTitleName, author: bookAuthorName, id: bookId },
+    ])
   })
 })
