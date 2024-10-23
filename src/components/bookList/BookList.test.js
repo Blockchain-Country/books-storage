@@ -1,43 +1,40 @@
 import { within } from '@testing-library/react'
-import { useSelector } from 'react-redux'
 import { setup } from '../../setupTests'
+import BookList from '../../components/bookList/BookList'
+import { createStore } from '../../redux/store'
 
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'
 
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(),
-}))
-
 describe('BookList Component Tests', () => {
-  beforeEach(() => {
-    useSelector.mockClear()
-  })
-
   test('Should display "No books in my list..." when books list is empty', () => {
-    useSelector.mockImplementation(() => [])
-    const { bookListComponent } = setup()
-    const noBooksSign = within(bookListComponent).getByText(
-      'No books in my list...'
-    )
+    // Create the mocked store with no books in the preloaded state
+    const mockedStore = createStore({
+      books: [],
+    })
+
+    // Render the BookList component with the mock store
+    const { container } = setup(BookList, mockedStore)
+
+    const noBooksSign = within(container).getByTestId('no_books_sign')
     expect(noBooksSign).toBeInTheDocument()
-    useSelector.mockClear()
   })
 
-  //   test('Should display a book in the list when there is one book', () => {
-  //     useSelector.mockImplementation(() => [
-  //       { title: bookTitleName, author: bookAuthorName },
-  //     ])
-  //     const { bookListComponent } = setup()
+  test('Should display a book in the list when there is one book', () => {
+    // Create the mocked store with one book in the preloaded state
+    const mockedStore = createStore({
+      books: [{ title: bookTitleName, author: bookAuthorName }],
+    })
 
-  //     const addedBookTitleText =
-  //       within(bookListComponent).getByText(bookTitleName)
-  //     expect(addedBookTitleText).toBeInTheDocument()
-  //     // const addedBook = within(bookListComponent).getByText((content, element) => {
-  //     //     // Match text that includes both the title and the author
-  //     //     return content.includes(bookTitleName) && content.includes(bookAuthorName)
-  //     //   })
-  //     //   expect(addedBook).toBeInTheDocument()
-  //   })
+    // Render the BookList component with the updated store
+    const { container } = setup(BookList, mockedStore)
+
+    const noBooksSign = within(container).queryByTestId('no_books_sign')
+    expect(noBooksSign).toBeNull()
+
+    const bookItems = within(container).getAllByRole('listitem')
+    expect(bookItems.length).toBe(1)
+    expect(within(bookItems[0]).getByText(bookTitleName)).toBeInTheDocument()
+    expect(within(bookItems[0]).getByText(bookAuthorName)).toBeInTheDocument()
+  })
 })
