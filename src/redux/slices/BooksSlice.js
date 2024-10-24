@@ -13,10 +13,17 @@ const booksSlice = createSlice({
     deleteBook: (state, action) => {
       return state.filter((book) => book.id !== action.payload)
     },
+    toggleFavorite: (state, action) => {
+      state.map((book) => {
+        if (book.id === action.payload) {
+          book.isFavorite = !book.isFavorite
+        }
+      })
+    },
   },
 })
 
-export const { addBook, deleteBook } = booksSlice.actions
+export const { addBook, deleteBook, toggleFavorite } = booksSlice.actions
 
 export const selectBook = (state) => state.books
 
