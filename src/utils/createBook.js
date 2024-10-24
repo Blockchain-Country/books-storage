@@ -4,6 +4,7 @@ const createBook = (book) => {
   return {
     ...book,
     id: uuidv4(),
+    isFavorite: false,
   }
 }
 

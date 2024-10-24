@@ -1,14 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { TbStar } from 'react-icons/tb'
+import { TbStarFilled } from 'react-icons/tb'
+import {
+  selectBook,
+  deleteBook,
+  toggleFavorite,
+} from '../../redux/slices/BooksSlice'
 import './BookList.css'
-import { selectBook } from '../../redux/slices/BooksSlice'
-import { deleteBook } from '../../redux/slices/BooksSlice'
 
 const BookList = () => {
   const books = useSelector(selectBook)
   const dispatch = useDispatch()
 
   const handleDeleteBook = (id) => {
-    dispatch(deleteBook(id))
+    books.forEach((book) => {
+      if (book.id === id && !book.isFavorite) {
+        dispatch(deleteBook(id))
+      }
+    })
+  }
+
+  const toggleFavoriteBook = (id) => {
+    dispatch(toggleFavorite(id))
   }
 
   return (
@@ -30,6 +43,16 @@ const BookList = () => {
                   </span>
                 </div>
                 <div className="book-actions">
+                  <span
+                    onClick={() => toggleFavoriteBook(book.id)}
+                    data-testid={`isFavorite_${book.isFavorite}`}
+                  >
+                    {book.isFavorite ? (
+                      <TbStarFilled className="star-icon" />
+                    ) : (
+                      <TbStar className="star-icon" />
+                    )}
+                  </span>
                   <button
                     onClick={() => handleDeleteBook(book.id)}
                     data-testid="delete_book_btn"

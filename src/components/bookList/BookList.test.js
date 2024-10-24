@@ -55,4 +55,46 @@ describe('BookList Component Tests', () => {
     const noBooksSign = within(container).getByTestId('no_books_sign')
     expect(noBooksSign).toBeInTheDocument()
   })
+
+  test('Should not able to delete Favorite book', () => {
+    const mockedStore = createStore({
+      books: [
+        {
+          title: bookTitleName,
+          author: bookAuthorName,
+          id: bookId,
+          isFavorite: false,
+        },
+      ],
+    })
+
+    const { container } = setup(BookList, mockedStore)
+
+    const bookItems = within(container).getByTestId(bookId)
+    let isFavoriteFalse = within(bookItems).getByTestId('isFavorite_false')
+    expect(isFavoriteFalse).toBeInTheDocument()
+
+    fireEvent.click(isFavoriteFalse)
+    let isFavoriteTrue = within(bookItems).getByTestId('isFavorite_true')
+    expect(isFavoriteTrue).toBeInTheDocument()
+
+    //try to delete toggled book:
+    let deleteBookBtn = within(bookItems).getByTestId('delete_book_btn')
+    fireEvent.click(deleteBookBtn)
+    expect(bookItems).toBeInTheDocument()
+
+    //untoggle favorite:
+    isFavoriteTrue = within(bookItems).getByTestId('isFavorite_true')
+    fireEvent.click(isFavoriteTrue)
+    isFavoriteFalse = within(bookItems).getByTestId('isFavorite_false')
+    expect(isFavoriteFalse).toBeInTheDocument()
+
+    //delete book:
+    deleteBookBtn = within(bookItems).getByTestId('delete_book_btn')
+    fireEvent.click(deleteBookBtn)
+
+    //assert if the book deleted from the DOM:
+    const deletedBookItem = within(container).queryByTestId(bookId)
+    expect(deletedBookItem).toBeNull()
+  })
 })
