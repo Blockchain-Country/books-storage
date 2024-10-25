@@ -2,6 +2,7 @@ import { screen, fireEvent, within } from '@testing-library/react'
 import { setup } from './setupTests'
 import { createStore } from './redux/store'
 import App from './App'
+import { resetAllFilters } from './redux/slices/FilterSlice'
 
 //App main component:
 let header, bookFormComponent, bookFilterComponent, bookListComponent
@@ -10,10 +11,10 @@ let header, bookFormComponent, bookFilterComponent, bookListComponent
 let titleInput, authorInput, submitBookBtn
 
 // BookFilter elements:
-let filterByTitleInput, filterbyAuthorInput
+let filterByTitleInput, filterbyAuthorInput, clearAllFiltersBtn
 
-const bookTitleName = 'Test Book Title'
-const bookAuthorName = 'Test Book Author'
+const bookTitleName = 'BookTitle1'
+const bookAuthorName = 'BookAuthor1'
 
 let store
 
@@ -72,6 +73,7 @@ describe('App functional Tests', () => {
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
     filterbyAuthorInput = screen.getByTestId('filterByAuthor_input')
+    clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
   })
 
   test('Should Submit a new book to the BookList component', () => {
@@ -126,5 +128,26 @@ describe('App functional Tests', () => {
 
     const filteredAuthorEl = within(filteredBooks[0]).getByText('BookAuthor2')
     expect(filteredAuthorEl).toBeInTheDocument()
+  })
+
+  test('Should display back two books when click ClearAllfilters btn', () => {
+    submitNewBook(bookTitleName, bookAuthorName)
+    submitNewBook('BookTitle2', 'BookAuthor2')
+
+    // Apply TitleFilter
+    fireEvent.change(filterByTitleInput, {
+      target: { value: bookTitleName },
+    })
+
+    // Verify the BookList is filtered and contain one book
+    const filteredBooks = within(bookListComponent).getAllByRole('listitem')
+    expect(filteredBooks.length).toEqual(1)
+
+    fireEvent.click(clearAllFiltersBtn)
+
+    // Verify the BookList to contain two books
+    const booksListAfterFilterReset =
+      within(bookListComponent).getAllByRole('listitem')
+    expect(booksListAfterFilterReset.length).toEqual(2)
   })
 })

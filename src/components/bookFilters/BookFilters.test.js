@@ -6,7 +6,7 @@ import App from '../../App'
 const titleFilterStr = 'title'
 const authorFilterStr = 'author'
 
-let filterByTitleInput, filterbyAuthorInput
+let filterByTitleInput, filterbyAuthorInput, clearAllFiltersBtn
 
 describe('BookFilter Component Tests', () => {
   beforeEach(() => {
@@ -15,11 +15,12 @@ describe('BookFilter Component Tests', () => {
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
     filterbyAuthorInput = screen.getByTestId('filterByAuthor_input')
+    clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
   })
 
   test('Should render TitleFilter input', () => {
-    expect(filterByTitleInput).toBeEnabled()
     expect(filterByTitleInput).toBeInTheDocument()
+    expect(filterByTitleInput).toBeEnabled()
   })
 
   test('Should accept inputs to TitleFilter', () => {
@@ -28,8 +29,8 @@ describe('BookFilter Component Tests', () => {
   })
 
   test('Should render AuthorFilter input', () => {
-    expect(filterbyAuthorInput).toBeEnabled()
     expect(filterbyAuthorInput).toBeInTheDocument()
+    expect(filterbyAuthorInput).toBeEnabled()
   })
 
   test('Should accept inputs to AuthorFilter', () => {
@@ -37,5 +38,10 @@ describe('BookFilter Component Tests', () => {
       target: { value: authorFilterStr },
     })
     expect(filterbyAuthorInput.value).toBe(authorFilterStr)
+  })
+
+  test('Should render ClearAllFilters btn', () => {
+    expect(clearAllFiltersBtn).toBeInTheDocument()
+    expect(clearAllFiltersBtn).toBeEnabled()
   })
 })

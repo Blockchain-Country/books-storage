@@ -5,6 +5,7 @@ import {
   setAuthorFilter,
   selectTitleFilter,
   selectAuthorFilter,
+  resetAllFilters,
 } from '../../redux/slices/FilterSlice'
 
 const BookFilter = () => {
@@ -18,6 +19,10 @@ const BookFilter = () => {
 
   const handleAuthorFilter = (e) => {
     dispatch(setAuthorFilter(e.target.value))
+  }
+
+  const handleResetFilters = () => {
+    dispatch(resetAllFilters())
   }
 
   return (
@@ -41,7 +46,9 @@ const BookFilter = () => {
             data-testid="filterByAuthor_input"
           ></input>
         </div>
-        <button>Clear Filters</button>
+        <button onClick={handleResetFilters} data-testid="clearAllFilters_btn">
+          Clear All Filters
+        </button>
       </div>
     </div>
   )

@@ -7,6 +7,7 @@ import booksReducer, {
 import filterReducer, {
   setTitleFilter,
   setAuthorFilter,
+  resetAllFilters,
 } from './slices/FilterSlice'
 
 const bookTitleName = 'Test Book Title'
@@ -72,5 +73,21 @@ describe('Redux Store Tests', () => {
     )
     expect(state.title).toEqual('')
     expect(state.author).toEqual('test author')
+  })
+
+  test('Should set Title and Author filter then verify resetAllFilters reducer', () => {
+    const satedTitleFilterState = filterReducer(
+      initialFilterState,
+      setTitleFilter('test title')
+    )
+    const satedBothFiltersState = filterReducer(
+      satedTitleFilterState,
+      setAuthorFilter('test author')
+    )
+    const afterResetState = filterReducer(
+      satedBothFiltersState,
+      resetAllFilters()
+    )
+    expect(afterResetState).toEqual(initialFilterState)
   })
 })
