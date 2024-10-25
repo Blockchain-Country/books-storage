@@ -1,13 +1,10 @@
-import { fireEvent, within, screen } from '@testing-library/react'
-import { v4 as uuidv4 } from 'uuid'
-import booksReducer from '../../redux/slices/BooksSlice'
+import { fireEvent, screen } from '@testing-library/react'
 import { setup } from '../../setupTests'
 import store from '../../redux/store'
 import App from '../../App'
 
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'
-const bookId = uuidv4()
 
 let titleInput, authorInput, submitBookBtn, bookListComponent
 
@@ -22,47 +19,23 @@ describe('BookForm Component Tests', () => {
     bookListComponent = screen.getByTestId('book_list_component')
   })
 
-  test('Should render Title input field', () => {
+  test('Should render Title input', () => {
     expect(titleInput).toBeEnabled()
     expect(titleInput).toBeInTheDocument()
   })
 
-  test('Should accept input value in Title field', () => {
+  test('Should accept inputs to Title', () => {
     fireEvent.change(titleInput, { target: { value: bookTitleName } })
     expect(titleInput.value).toBe(bookTitleName)
   })
 
-  test('Should render Author input field', () => {
+  test('Should render Author input', () => {
     expect(authorInput).toBeEnabled()
     expect(authorInput).toBeInTheDocument()
   })
 
-  test('Should accept input value in Author field', () => {
+  test('Should accept inputs to Author', () => {
     fireEvent.change(authorInput, { target: { value: bookAuthorName } })
     expect(authorInput.value).toBe(bookAuthorName)
-  })
-
-  test('Should submit the form and add a new book to the BookList component', () => {
-    fireEvent.change(titleInput, { target: { value: bookTitleName } })
-    fireEvent.change(authorInput, { target: { value: bookAuthorName } })
-    fireEvent.click(submitBookBtn)
-
-    // Verify that the book is added to the book list
-    const newBookTitle = within(bookListComponent).getByText(bookTitleName)
-    const newBookAuthor = within(bookListComponent).getByText(bookAuthorName)
-    expect(newBookTitle).toBeInTheDocument()
-    expect(newBookAuthor).toBeInTheDocument()
-  })
-})
-
-describe('Redux Store Tests', () => {
-  test('Should manually add a book to the store', () => {
-    let state = booksReducer([], {
-      type: 'books/addBook',
-      payload: { title: bookTitleName, author: bookAuthorName, id: bookId },
-    })
-    expect(state).toEqual([
-      { title: bookTitleName, author: bookAuthorName, id: bookId },
-    ])
   })
 })

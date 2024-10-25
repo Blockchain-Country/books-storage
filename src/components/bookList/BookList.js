@@ -1,16 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { TbStar } from 'react-icons/tb'
 import { TbStarFilled } from 'react-icons/tb'
+import './BookList.css'
 import {
   selectBook,
   deleteBook,
   toggleFavorite,
 } from '../../redux/slices/BooksSlice'
-import './BookList.css'
+import {
+  selectTitleFilter,
+  selectAuthorFilter,
+} from '../../redux/slices/FilterSlice'
 
 const BookList = () => {
   const books = useSelector(selectBook)
   const dispatch = useDispatch()
+  const titleFilter = useSelector(selectTitleFilter)
+  const authorFilter = useSelector(selectAuthorFilter)
 
   const handleDeleteBook = (id) => {
     books.forEach((book) => {
@@ -24,15 +30,22 @@ const BookList = () => {
     dispatch(toggleFavorite(id))
   }
 
+  const filteredBooksArr = books.filter((book) => {
+    return (
+      book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+      book.author.toLowerCase().includes(authorFilter.toLowerCase())
+    )
+  })
+
   return (
     <div className="app-block book-list" data-testid="book_list_component">
       <h2>My Book List</h2>
       <div className="book-list">
         <ul>
-          {!books.length ? (
+          {!filteredBooksArr.length ? (
             <p data-testid="no_books_sign">No books in my list...</p>
           ) : (
-            books.map((book, i) => (
+            filteredBooksArr.map((book, i) => (
               <li key={book.id} data-testid={book.id}>
                 <div className="book-info">
                   <span>{++i}. </span>
