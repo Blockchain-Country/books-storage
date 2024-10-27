@@ -24,8 +24,9 @@ const BookForm = () => {
       data-testid="book_form_component"
       onSubmit={handleSubmit}
     >
-      <h2>BookForm</h2>
       <form className="book-form">
+        <label>or</label>
+        <h2>Add Book</h2>
         <div>
           <label>Title:</label>
           <input
@@ -46,7 +47,7 @@ const BookForm = () => {
             data-testid="book_form_author_input"
           ></input>
         </div>
-        <button type="submit" data-testid="book_form_sbmit_btn">
+        <button type="submit" data-testid="book_form_submit_btn">
           Add book
         </button>
       </form>

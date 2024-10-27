@@ -15,7 +15,7 @@ describe('BookForm Component Tests', () => {
     // BookForm elements:
     titleInput = screen.getByTestId('book_form_title_input')
     authorInput = screen.getByTestId('book_form_author_input')
-    submitBookBtn = screen.getByTestId('book_form_sbmit_btn')
+    submitBookBtn = screen.getByTestId('book_form_submit_btn')
     bookListComponent = screen.getByTestId('book_list_component')
   })
 

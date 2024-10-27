@@ -2,7 +2,6 @@ import { screen, fireEvent, within } from '@testing-library/react'
 import { setup } from './setupTests'
 import { createStore } from './redux/store'
 import App from './App'
-import { resetAllFilters } from './redux/slices/FilterSlice'
 
 //App main component:
 let header, bookFormComponent, bookFilterComponent, bookListComponent
@@ -68,7 +67,7 @@ describe('App functional Tests', () => {
     // BookForm elements:
     titleInput = screen.getByTestId('book_form_title_input')
     authorInput = screen.getByTestId('book_form_author_input')
-    submitBookBtn = screen.getByTestId('book_form_sbmit_btn')
+    submitBookBtn = screen.getByTestId('book_form_submit_btn')
     bookListComponent = screen.getByTestId('book_list_component')
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
@@ -98,14 +97,14 @@ describe('App functional Tests', () => {
 
     // Apply TitleFilter
     fireEvent.change(filterByTitleInput, {
-      target: { value: 'BookTitle2' },
+      target: { value: bookTitleName },
     })
 
     // Verify the BookList is filtered and contain one book
     const filteredBooks = within(bookListComponent).getAllByRole('listitem')
     expect(filteredBooks.length).toEqual(1)
 
-    const filteredTitleEl = within(filteredBooks[0]).getByText('BookTitle2')
+    const filteredTitleEl = within(filteredBooks[0]).getByText(bookTitleName)
     expect(filteredTitleEl).toBeInTheDocument()
   })
 
@@ -119,14 +118,14 @@ describe('App functional Tests', () => {
 
     // Apply AuthorFilter
     fireEvent.change(filterbyAuthorInput, {
-      target: { value: 'BookAuthor2' },
+      target: { value: bookAuthorName },
     })
 
     // Verify the BookList is filtered and contain one book
     const filteredBooks = within(bookListComponent).getAllByRole('listitem')
     expect(filteredBooks.length).toEqual(1)
 
-    const filteredAuthorEl = within(filteredBooks[0]).getByText('BookAuthor2')
+    const filteredAuthorEl = within(filteredBooks[0]).getByText(bookAuthorName)
     expect(filteredAuthorEl).toBeInTheDocument()
   })
 
