@@ -55,6 +55,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: List slices directory
+        run: ls -al src/redux/slices
+
       - name: Build the app
         # working-directory: .
         run: npm run build
