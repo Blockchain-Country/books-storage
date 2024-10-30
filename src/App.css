@@ -18,14 +18,16 @@
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  gap: 20px;
 }
 
 .app-left-column {
   flex: 1;
   flex-basis: 35%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  align-self: flex-start;
+  /* align-self: flex-start; */
 }
 
 .app-right-column {

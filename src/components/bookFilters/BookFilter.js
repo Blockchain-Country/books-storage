@@ -6,7 +6,7 @@ import {
   selectTitleFilter,
   selectAuthorFilter,
   resetAllFilters,
-} from '../../redux/slices/FilterSlice'
+} from '../../redux/slices/filterSlice'
 
 const BookFilter = () => {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const BookFilter = () => {
         <div className="filter-group">
           <input
             type="text"
-            placeholder="filter by title..."
+            placeholder="Filter by title..."
             value={filterTitle}
             onChange={handleTitleFilter}
             data-testid="filterByTitle_input"
@@ -40,7 +40,7 @@ const BookFilter = () => {
         <div className="filter-group">
           <input
             type="text"
-            placeholder="filter by author..."
+            placeholder="Filter by author..."
             value={filterAuthor}
             onChange={handleAuthorFilter}
             data-testid="filterByAuthor_input"

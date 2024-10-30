@@ -3,12 +3,12 @@ import booksReducer, {
   addBook,
   deleteBook,
   toggleFavorite,
-} from './slices/BooksSlice'
+} from './slices/booksSlice'
 import filterReducer, {
   setTitleFilter,
   setAuthorFilter,
   resetAllFilters,
-} from './slices/FilterSlice'
+} from './slices/filterSlice'
 
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'

@@ -16,6 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Cache node_modules
         uses: actions/cache@v3
         with:
@@ -51,6 +54,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: List slices directory
+        run: ls -al src/redux/slices
 
       - name: Build the app
         # working-directory: .

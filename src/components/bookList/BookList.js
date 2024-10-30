@@ -6,11 +6,11 @@ import {
   selectBook,
   deleteBook,
   toggleFavorite,
-} from '../../redux/slices/BooksSlice'
+} from '../../redux/slices/booksSlice'
 import {
   selectTitleFilter,
   selectAuthorFilter,
-} from '../../redux/slices/FilterSlice'
+} from '../../redux/slices/filterSlice'
 
 const BookList = () => {
   const books = useSelector(selectBook)
@@ -38,7 +38,7 @@ const BookList = () => {
   })
 
   return (
-    <div className="app-block book-list" data-testid="book_list_component">
+    <div className="app-block book-list" data-testid="bookList_component">
       <h2>My Book List</h2>
       <div className="book-list">
         <ul>
@@ -49,9 +49,10 @@ const BookList = () => {
               <li key={book.id} data-testid={book.id}>
                 <div className="book-info">
                   <span>{++i}. </span>
+                  <span>{'"'}</span>
                   <span>{book.title}</span>
                   <span>
-                    {' '}
+                    {'" '}
                     by <strong>{book.author}</strong>
                   </span>
                 </div>

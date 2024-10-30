@@ -8,15 +8,15 @@ const bookAuthorName = 'Test Book Author'
 
 let titleInput, authorInput, submitBookBtn, bookListComponent
 
-describe('BookForm Component Tests', () => {
+describe('ManualBookForm Component Tests', () => {
   beforeEach(() => {
     setup(App, store)
 
-    // BookForm elements:
-    titleInput = screen.getByTestId('book_form_title_input')
-    authorInput = screen.getByTestId('book_form_author_input')
-    submitBookBtn = screen.getByTestId('book_form_sbmit_btn')
-    bookListComponent = screen.getByTestId('book_list_component')
+    // ManualBookForm elements:
+    titleInput = screen.getByTestId('manualBookForm_titleInput')
+    authorInput = screen.getByTestId('manualBookForm_aurthorInput')
+    submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
+    bookListComponent = screen.getByTestId('bookList_component')
   })
 
   test('Should render Title input', () => {
