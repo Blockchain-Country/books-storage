@@ -1,10 +1,9 @@
 // BookSearchModal.js
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './SearchBookModal.css'
-import { addBook } from '../../redux/slices/booksSlice'
+import { addBook, selectBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
-import { selectBook } from '../../redux/slices/booksSlice'
+import './SearchBookModal.css'
 
 const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
   const dispatch = useDispatch()
