@@ -27,6 +27,7 @@ const BookFormAPI = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false)
     dispatch(clearSearchResults())
+    setBookToSearch('')
   }
 
   return (
@@ -53,7 +54,7 @@ const BookFormAPI = () => {
         <SearchBookForm
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          book={searchResults.length > 0 ? searchResults[0] : null}
+          booksFoundList={searchResults}
         />
       )}
     </div>

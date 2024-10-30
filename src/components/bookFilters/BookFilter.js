@@ -6,7 +6,7 @@ import {
   selectTitleFilter,
   selectAuthorFilter,
   resetAllFilters,
-} from '../../redux/slices/FilterSlice'
+} from '../../redux/slices/filterSlice'
 
 const BookFilter = () => {
   const dispatch = useDispatch()

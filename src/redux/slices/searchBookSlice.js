@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { searchBookOnGoogle } from '../../services/bookService'
+import { searchBookOnGoogle } from '../../services/searchBookService'
 
 export const searchBooks = createAsyncThunk(
   'bookSearch/searchBooks',

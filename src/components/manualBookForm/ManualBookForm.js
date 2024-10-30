@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import './BookForm.css'
-import { addBook } from '../../redux/slices/BooksSlice'
+import './ManualBookForm.css'
+import { addBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
 
 const BookForm = () => {
@@ -21,7 +21,7 @@ const BookForm = () => {
   return (
     <div
       className="app-block book-form"
-      data-testid="book_form_component"
+      data-testid="manualBookForm_component"
       onSubmit={handleSubmit}
     >
       <form className="book-form">
@@ -34,7 +34,7 @@ const BookForm = () => {
             placeholder="Enter book title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            data-testid="book_form_title_input"
+            data-testid="manualBookForm_titleInput"
           ></input>
         </div>
         <div>
@@ -44,10 +44,10 @@ const BookForm = () => {
             placeholder="Enter book author..."
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            data-testid="book_form_author_input"
+            data-testid="manualBookForm_aurthorInput"
           ></input>
         </div>
-        <button type="submit" data-testid="book_form_submit_btn">
+        <button type="submit" data-testid="manualBookForm_submitBtn">
           Add book
         </button>
       </form>

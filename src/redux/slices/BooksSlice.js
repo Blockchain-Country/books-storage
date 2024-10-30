@@ -8,7 +8,15 @@ const booksSlice = createSlice({
   reducers: {
     addBook: (state, action) => {
       //   state.push(action.payload)
-      return [...state, action.payload]
+      const existingBookTitle = state.find(
+        (book) => book.title === action.payload.title
+      )
+      const existingBookAuthor = state.find(
+        (book) => book.author === action.payload.author
+      )
+      if (!existingBookTitle && !existingBookAuthor) {
+        return [...state, action.payload]
+      }
     },
     deleteBook: (state, action) => {
       return state.filter((book) => book.id !== action.payload)

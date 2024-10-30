@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import booksReducer from './slices/BooksSlice'
-import filterReducer from './slices/FilterSlice'
+import booksReducer from './slices/booksSlice'
+import filterReducer from './slices/filterSlice'
 import searchBookReducer from './slices/searchBookSlice'
 
 const createStore = (preloadedState) => {

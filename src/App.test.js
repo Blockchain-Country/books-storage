@@ -4,7 +4,7 @@ import { createStore } from './redux/store'
 import App from './App'
 
 //App main component:
-let header, bookFormComponent, bookFilterComponent, bookListComponent
+let header, manualBookForm_Component, bookFilter_Component, bookList_Component
 
 // BookForm elements:
 let titleInput, authorInput, submitBookBtn
@@ -34,11 +34,11 @@ describe('App Component Tests', () => {
     resetStore()
     setup(App, store)
 
-    //main component elements:
+    //main components elements:
     header = screen.getByTestId('app_header')
-    bookFormComponent = screen.getByTestId('book_form_component')
-    bookFilterComponent = screen.getByTestId('book_filter_component')
-    bookListComponent = screen.getByTestId('book_list_component')
+    manualBookForm_Component = screen.getByTestId('manualBookForm_component')
+    bookFilter_Component = screen.getByTestId('book_filter_component')
+    bookList_Component = screen.getByTestId('bookList_component')
   })
 
   test('Should render the Header to be in the DOM and should contain text "My Book Storage"', async () => {
@@ -46,16 +46,16 @@ describe('App Component Tests', () => {
     expect(header).toHaveTextContent('My Book Storage')
   })
 
-  test('Should render the BookForm component in the DOM', () => {
-    expect(bookFormComponent).toBeInTheDocument()
+  test('Should render the ManualBookForm component in the DOM', () => {
+    expect(manualBookForm_Component).toBeInTheDocument()
   })
 
   test('Should render the BookList component in the DOM', () => {
-    expect(bookListComponent).toBeInTheDocument()
+    expect(bookList_Component).toBeInTheDocument()
   })
 
   test('Should render the BookFilter component in the DOM', () => {
-    expect(bookFilterComponent).toBeInTheDocument()
+    expect(bookFilter_Component).toBeInTheDocument()
   })
 })
 
@@ -64,11 +64,11 @@ describe('App functional Tests', () => {
     resetStore()
     setup(App, store)
 
-    // BookForm elements:
-    titleInput = screen.getByTestId('book_form_title_input')
-    authorInput = screen.getByTestId('book_form_author_input')
-    submitBookBtn = screen.getByTestId('book_form_submit_btn')
-    bookListComponent = screen.getByTestId('book_list_component')
+    // ManualBookForm elements:
+    titleInput = screen.getByTestId('manualBookForm_titleInput')
+    authorInput = screen.getByTestId('manualBookForm_aurthorInput')
+    submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
+    bookList_Component = screen.getByTestId('bookList_component')
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
     filterbyAuthorInput = screen.getByTestId('filterByAuthor_input')
@@ -79,7 +79,7 @@ describe('App functional Tests', () => {
     submitNewBook(bookTitleName, bookAuthorName)
 
     // Verify that the book is added to the book list
-    const bookItems = within(bookListComponent).getAllByRole('listitem')
+    const bookItems = within(bookList_Component).getAllByRole('listitem')
     expect(bookItems.length).toEqual(1)
     const newBookTitle = within(bookItems[0]).getByText(bookTitleName)
     expect(newBookTitle).toBeInTheDocument()
@@ -92,7 +92,7 @@ describe('App functional Tests', () => {
     submitNewBook('BookTitle2', 'BookAuthor2')
 
     // Verify two books added to the BookList
-    const bookItems = within(bookListComponent).getAllByRole('listitem')
+    const bookItems = within(bookList_Component).getAllByRole('listitem')
     expect(bookItems.length).toEqual(2)
 
     // Apply TitleFilter
@@ -101,7 +101,7 @@ describe('App functional Tests', () => {
     })
 
     // Verify the BookList is filtered and contain one book
-    const filteredBooks = within(bookListComponent).getAllByRole('listitem')
+    const filteredBooks = within(bookList_Component).getAllByRole('listitem')
     expect(filteredBooks.length).toEqual(1)
 
     const filteredTitleEl = within(filteredBooks[0]).getByText(bookTitleName)
@@ -113,7 +113,7 @@ describe('App functional Tests', () => {
     submitNewBook('BookTitle2', 'BookAuthor2')
 
     // Verify two books added to the BookList
-    const bookItems = within(bookListComponent).getAllByRole('listitem')
+    const bookItems = within(bookList_Component).getAllByRole('listitem')
     expect(bookItems.length).toEqual(2)
 
     // Apply AuthorFilter
@@ -122,7 +122,7 @@ describe('App functional Tests', () => {
     })
 
     // Verify the BookList is filtered and contain one book
-    const filteredBooks = within(bookListComponent).getAllByRole('listitem')
+    const filteredBooks = within(bookList_Component).getAllByRole('listitem')
     expect(filteredBooks.length).toEqual(1)
 
     const filteredAuthorEl = within(filteredBooks[0]).getByText(bookAuthorName)
@@ -139,14 +139,14 @@ describe('App functional Tests', () => {
     })
 
     // Verify the BookList is filtered and contain one book
-    const filteredBooks = within(bookListComponent).getAllByRole('listitem')
+    const filteredBooks = within(bookList_Component).getAllByRole('listitem')
     expect(filteredBooks.length).toEqual(1)
 
     fireEvent.click(clearAllFiltersBtn)
 
     // Verify the BookList to contain two books
     const booksListAfterFilterReset =
-      within(bookListComponent).getAllByRole('listitem')
+      within(bookList_Component).getAllByRole('listitem')
     expect(booksListAfterFilterReset.length).toEqual(2)
   })
 })
