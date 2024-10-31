@@ -6,7 +6,7 @@ import App from '../../App'
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'
 
-let titleInput, authorInput, submitBookBtn, bookListComponent
+let titleInput, authorsInput, submitBookBtn, bookListComponent
 
 describe('ManualBookForm Component Tests', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('ManualBookForm Component Tests', () => {
 
     // ManualBookForm elements:
     titleInput = screen.getByTestId('manualBookForm_titleInput')
-    authorInput = screen.getByTestId('manualBookForm_aurthorInput')
+    authorsInput = screen.getByTestId('manualBookForm_authorsInput')
     submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
     bookListComponent = screen.getByTestId('bookList_component')
   })
@@ -29,13 +29,13 @@ describe('ManualBookForm Component Tests', () => {
     expect(titleInput.value).toBe(bookTitleName)
   })
 
-  test('Should render Author input', () => {
-    expect(authorInput).toBeEnabled()
-    expect(authorInput).toBeInTheDocument()
+  test('Should render Authors input', () => {
+    expect(authorsInput).toBeEnabled()
+    expect(authorsInput).toBeInTheDocument()
   })
 
-  test('Should accept inputs to Author', () => {
-    fireEvent.change(authorInput, { target: { value: bookAuthorName } })
-    expect(authorInput.value).toBe(bookAuthorName)
+  test('Should accept inputs to Authors', () => {
+    fireEvent.change(authorsInput, { target: { value: bookAuthorName } })
+    expect(authorsInput.value).toBe(bookAuthorName)
   })
 })

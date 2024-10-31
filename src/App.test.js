@@ -7,10 +7,10 @@ import App from './App'
 let header, manualBookForm_Component, bookFilter_Component, bookList_Component
 
 // BookForm elements:
-let titleInput, authorInput, submitBookBtn
+let titleInput, authorsInput, submitBookBtn
 
 // BookFilter elements:
-let filterByTitleInput, filterbyAuthorInput, clearAllFiltersBtn
+let filterByTitleInput, filterbyAuthorsInput, clearAllFiltersBtn
 
 const bookTitleName = 'BookTitle1'
 const bookAuthorName = 'BookAuthor1'
@@ -23,7 +23,7 @@ function resetStore() {
 
 function submitNewBook(bookTitle, bookAuthor) {
   fireEvent.change(titleInput, { target: { value: bookTitle } })
-  fireEvent.change(authorInput, { target: { value: bookAuthor } })
+  fireEvent.change(authorsInput, { target: { value: bookAuthor } })
   fireEvent.click(submitBookBtn)
 }
 
@@ -66,12 +66,12 @@ describe('App functional Tests', () => {
 
     // ManualBookForm elements:
     titleInput = screen.getByTestId('manualBookForm_titleInput')
-    authorInput = screen.getByTestId('manualBookForm_aurthorInput')
+    authorsInput = screen.getByTestId('manualBookForm_authorsInput')
     submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
     bookList_Component = screen.getByTestId('bookList_component')
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
-    filterbyAuthorInput = screen.getByTestId('filterByAuthor_input')
+    filterbyAuthorsInput = screen.getByTestId('filterByAuthors_input')
     clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
   })
 
@@ -108,7 +108,7 @@ describe('App functional Tests', () => {
     expect(filteredTitleEl).toBeInTheDocument()
   })
 
-  test('Should Submit two books then filter by Author', () => {
+  test('Should Submit two books then filter by Authors', () => {
     submitNewBook(bookTitleName, bookAuthorName)
     submitNewBook('BookTitle2', 'BookAuthor2')
 
@@ -117,7 +117,7 @@ describe('App functional Tests', () => {
     expect(bookItems.length).toEqual(2)
 
     // Apply AuthorFilter
-    fireEvent.change(filterbyAuthorInput, {
+    fireEvent.change(filterbyAuthorsInput, {
       target: { value: bookAuthorName },
     })
 

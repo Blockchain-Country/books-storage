@@ -1,12 +1,12 @@
-import { fireEvent, within, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { setup } from '../../setupTests'
 import store from '../../redux/store'
 import App from '../../App'
 
 const titleFilterStr = 'title'
-const authorFilterStr = 'author'
+const authorsFilterStr = 'authors'
 
-let filterByTitleInput, filterbyAuthorInput, clearAllFiltersBtn
+let filterByTitleInput, filterbyAuthorsInput, clearAllFiltersBtn
 
 describe('BookFilter Component Tests', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('BookFilter Component Tests', () => {
 
     // BookFilter elements:
     filterByTitleInput = screen.getByTestId('filterByTitle_input')
-    filterbyAuthorInput = screen.getByTestId('filterByAuthor_input')
+    filterbyAuthorsInput = screen.getByTestId('filterByAuthors_input')
     clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
   })
 
@@ -29,15 +29,15 @@ describe('BookFilter Component Tests', () => {
   })
 
   test('Should render AuthorFilter input', () => {
-    expect(filterbyAuthorInput).toBeInTheDocument()
-    expect(filterbyAuthorInput).toBeEnabled()
+    expect(filterbyAuthorsInput).toBeInTheDocument()
+    expect(filterbyAuthorsInput).toBeEnabled()
   })
 
   test('Should accept inputs to AuthorFilter', () => {
-    fireEvent.change(filterbyAuthorInput, {
-      target: { value: authorFilterStr },
+    fireEvent.change(filterbyAuthorsInput, {
+      target: { value: authorsFilterStr },
     })
-    expect(filterbyAuthorInput.value).toBe(authorFilterStr)
+    expect(filterbyAuthorsInput.value).toBe(authorsFilterStr)
   })
 
   test('Should render ClearAllFilters btn', () => {

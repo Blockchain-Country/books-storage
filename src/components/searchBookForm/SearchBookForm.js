@@ -1,17 +1,21 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchBookForm from '../modals/SearchBookModal'
+import { RiLoader2Line } from 'react-icons/ri'
+import SearchBookModal from '../modals/SearchBookModal'
 import './SearchBookForm.css'
 import {
   searchBooks,
   clearSearchResults,
   selectSearchResults,
+  selectIsLoading,
 } from '../../redux/slices/searchBookSlice'
 
 const BookFormAPI = () => {
   const dispatch = useDispatch()
   const [bookToSearch, setBookToSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const isLoading = useSelector(selectIsLoading)
 
   const searchResults = useSelector(selectSearchResults)
 
@@ -41,17 +45,17 @@ const BookFormAPI = () => {
         <div>
           <input
             type="text"
-            placeholder="Global book search..."
+            placeholder="Global books search..."
             onChange={(e) => setBookToSearch(e.target.value)}
             value={bookToSearch}
           ></input>
         </div>
         <button type="submit" data-testid="bookSearchSubmit_btn">
-          Search
+          {isLoading ? <RiLoader2Line className="spinner" /> : 'Search'}
         </button>
       </form>
-      {isModalOpen && (
-        <SearchBookForm
+      {isModalOpen && !isLoading && (
+        <SearchBookModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           booksFoundList={searchResults}

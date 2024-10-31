@@ -2,27 +2,35 @@ import { useDispatch, useSelector } from 'react-redux'
 import './BookFilter.css'
 import {
   setTitleFilter,
-  setAuthorFilter,
+  setAuthorsFilter,
   selectTitleFilter,
-  selectAuthorFilter,
+  selectAuthorsFilter,
   resetAllFilters,
 } from '../../redux/slices/filterSlice'
 
 const BookFilter = () => {
   const dispatch = useDispatch()
   const filterTitle = useSelector(selectTitleFilter)
-  const filterAuthor = useSelector(selectAuthorFilter)
+  const filterAuthors = useSelector(selectAuthorsFilter)
 
   const handleTitleFilter = (e) => {
-    dispatch(setTitleFilter(e.target.value))
+    const value = e.target.value
+    if (value.trim() || value === '') {
+      dispatch(setTitleFilter(value))
+    }
   }
 
-  const handleAuthorFilter = (e) => {
-    dispatch(setAuthorFilter(e.target.value))
+  const handleAuthorsFilter = (e) => {
+    const value = e.target.value
+    if (value.trim() || value === '') {
+      dispatch(setAuthorsFilter(value))
+    }
   }
 
   const handleResetFilters = () => {
-    dispatch(resetAllFilters())
+    if (filterTitle || filterAuthors) {
+      dispatch(resetAllFilters())
+    }
   }
 
   return (
@@ -40,10 +48,10 @@ const BookFilter = () => {
         <div className="filter-group">
           <input
             type="text"
-            placeholder="Filter by author..."
-            value={filterAuthor}
-            onChange={handleAuthorFilter}
-            data-testid="filterByAuthor_input"
+            placeholder="Filter by author(s)..."
+            value={filterAuthors}
+            onChange={handleAuthorsFilter}
+            data-testid="filterByAuthors_input"
           ></input>
         </div>
         <button onClick={handleResetFilters} data-testid="clearAllFilters_btn">
