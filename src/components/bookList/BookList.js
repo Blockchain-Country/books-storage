@@ -9,14 +9,14 @@ import {
 } from '../../redux/slices/booksSlice'
 import {
   selectTitleFilter,
-  selectAuthorFilter,
+  selectAuthorsFilter,
 } from '../../redux/slices/filterSlice'
 
 const BookList = () => {
   const books = useSelector(selectBook)
   const dispatch = useDispatch()
   const titleFilter = useSelector(selectTitleFilter)
-  const authorFilter = useSelector(selectAuthorFilter)
+  const authorsFilter = useSelector(selectAuthorsFilter)
 
   const handleDeleteBook = (id) => {
     books.forEach((book) => {
@@ -33,7 +33,7 @@ const BookList = () => {
   const filteredBooksArr = books.filter((book) => {
     return (
       book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
-      book.author.toLowerCase().includes(authorFilter.toLowerCase())
+      book.authors.toLowerCase().includes(authorsFilter.toLowerCase())
     )
   })
 
@@ -53,7 +53,7 @@ const BookList = () => {
                   <span>{book.title}</span>
                   <span>
                     {'" '}
-                    by <strong>{book.author}</strong>
+                    by <strong>{book.authors}</strong>
                   </span>
                 </div>
                 <div className="book-actions">

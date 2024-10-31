@@ -6,7 +6,7 @@ import booksReducer, {
 } from './slices/booksSlice'
 import filterReducer, {
   setTitleFilter,
-  setAuthorFilter,
+  setAuthorsFilter,
   resetAllFilters,
 } from './slices/filterSlice'
 
@@ -18,7 +18,7 @@ const bookIdTwo = uuidv4()
 const initialBooksState = [
   {
     title: bookTitleName,
-    author: bookAuthorName,
+    authors: bookAuthorName,
     id: bookIdOne,
     isFavorite: false,
   },
@@ -26,7 +26,7 @@ const initialBooksState = [
 
 const initialFilterState = {
   title: '',
-  author: '',
+  authors: '',
 }
 
 describe('Redux Store Tests', () => {
@@ -36,7 +36,7 @@ describe('Redux Store Tests', () => {
     expect(state).toEqual([
       {
         title: bookTitleName,
-        author: bookAuthorName,
+        authors: bookAuthorName,
         id: bookIdOne,
         isFavorite: false,
       },
@@ -45,8 +45,8 @@ describe('Redux Store Tests', () => {
 
   test('Should Delete particular book from the store and verify', () => {
     const initialState = [
-      { title: bookTitleName, author: bookAuthorName, id: bookIdOne },
-      { title: bookTitleName + 2, author: bookAuthorName + 2, id: bookIdTwo },
+      { title: bookTitleName, authors: bookAuthorName, id: bookIdOne },
+      { title: bookTitleName + 2, authors: bookAuthorName + 2, id: bookIdTwo },
     ]
     let state = booksReducer(initialState, deleteBook(bookIdOne))
 
@@ -63,16 +63,16 @@ describe('Redux Store Tests', () => {
   test('Should verify filterReducer by Titile ', () => {
     let state = filterReducer(initialFilterState, setTitleFilter('test title'))
     expect(state.title).toEqual('test title')
-    expect(state.author).toEqual('')
+    expect(state.authors).toEqual('')
   })
 
-  test('Should verify filterReducer by Author ', () => {
+  test('Should verify filterReducer by Authors ', () => {
     let state = filterReducer(
       initialFilterState,
-      setAuthorFilter('test author')
+      setAuthorsFilter('test author')
     )
     expect(state.title).toEqual('')
-    expect(state.author).toEqual('test author')
+    expect(state.authors).toEqual('test author')
   })
 
   test('Should set Title and Author filter then verify resetAllFilters reducer', () => {
@@ -82,7 +82,7 @@ describe('Redux Store Tests', () => {
     )
     const satedBothFiltersState = filterReducer(
       satedTitleFilterState,
-      setAuthorFilter('test author')
+      setAuthorsFilter('test author')
     )
     const afterResetState = filterReducer(
       satedBothFiltersState,

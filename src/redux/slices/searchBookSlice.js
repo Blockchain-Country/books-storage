@@ -1,20 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { searchBookOnGoogle } from '../../services/searchBookService'
+import { selectBook } from './booksSlice'
 
 export const searchBooks = createAsyncThunk(
-  'bookSearch/searchBooks',
-  async (query, { rejectWithValue }) => {
+  'booksSearch/searchBooks',
+  async (query, { getState, rejectWithValue }) => {
     try {
       const data = await searchBookOnGoogle(query)
-      return data
+
+      const state = getState()
+      const existingBooks = selectBook(state)
+
+      const filteredBooks = data.filter(
+        (foundBook) =>
+          !existingBooks.some(
+            (existingBook) =>
+              existingBook.title.toLowerCase() ===
+                foundBook.title.toLowerCase() &&
+              existingBook.authors.toLowerCase() ===
+                foundBook.authors.toLowerCase()
+          )
+      )
+
+      return filteredBooks
     } catch (error) {
       return rejectWithValue(error.message)
     }
   }
 )
 
-const bookSearchSlice = createSlice({
-  name: 'bookSearch',
+const searchBooksSlice = createSlice({
+  name: 'booksSearch',
   initialState: {
     searchResults: [],
     isLoading: false,
@@ -43,18 +59,19 @@ const bookSearchSlice = createSlice({
   },
 })
 
-export const { clearSearchResults } = bookSearchSlice.actions
+export const { clearSearchResults } = searchBooksSlice.actions
 
 let lastSearchResults = []
+
 export const selectSearchResults = (state) => {
-  if (state.booksSearch?.searchResults === lastSearchResults) {
+  if (state.booksSearch.searchResults === lastSearchResults) {
     return lastSearchResults
   }
-  lastSearchResults = state.booksSearch?.searchResults || []
+  lastSearchResults = state.booksSearch.searchResults
   return lastSearchResults
 }
 
-export const selectIsLoading = (state) => state.bookSearch?.isLoading || false
-export const selectError = (state) => state.bookSearch?.error || null
+export const selectIsLoading = (state) => state.booksSearch?.isLoading || false
+export const selectError = (state) => state.booksSearch?.error || null
 
-export default bookSearchSlice.reducer
+export default searchBooksSlice.reducer

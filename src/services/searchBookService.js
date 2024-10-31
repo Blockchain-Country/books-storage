@@ -18,7 +18,7 @@ export async function searchBookOnGoogle(query) {
         publishedDate: item.volumeInfo.publishedDate,
         language: item.volumeInfo.language,
         description: item.volumeInfo.description,
-        id: item.id,
+        bookId: item.id,
       }))
     } else {
       return []

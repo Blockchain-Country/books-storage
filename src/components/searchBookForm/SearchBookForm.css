@@ -34,7 +34,7 @@
 
 .book-form-api .spinner {
   animation: spinner 1s infinite linear;
-  margin-left: 10px;
+  padding: 1px 14.5px;
 }
 
 @keyframes spinner {

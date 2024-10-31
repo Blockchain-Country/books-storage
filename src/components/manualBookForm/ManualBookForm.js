@@ -1,21 +1,31 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import './ManualBookForm.css'
-import { addBook } from '../../redux/slices/booksSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBook, selectBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
+import './ManualBookForm.css'
 
 const BookForm = () => {
   const dispatch = useDispatch()
+
   const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
+  const [authors, setAuthors] = useState('')
+
+  const books = useSelector(selectBook)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (title && author) {
-      dispatch(addBook(createBook({ title, author })))
-      setTitle('')
-      setAuthor('')
+    if (title.trim() && authors.trim()) {
+      const filteredBooks = books.find(
+        (existedBook) =>
+          existedBook.title.toLowerCase() === title.toLowerCase() &&
+          existedBook.authors.toLowerCase() === authors.toLowerCase()
+      )
+      if (!filteredBooks) {
+        dispatch(addBook(createBook({ title, authors })))
+      }
     }
+    setTitle('')
+    setAuthors('')
   }
 
   return (
@@ -38,13 +48,13 @@ const BookForm = () => {
           ></input>
         </div>
         <div>
-          <label>Author: </label>
+          <label>Author(s): </label>
           <input
             type="text"
-            placeholder="Enter book author..."
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            data-testid="manualBookForm_aurthorInput"
+            placeholder="Enter book author(s)..."
+            value={authors}
+            onChange={(e) => setAuthors(e.target.value)}
+            data-testid="manualBookForm_authorsInput"
           ></input>
         </div>
         <button type="submit" data-testid="manualBookForm_submitBtn">

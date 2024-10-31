@@ -25,7 +25,7 @@ describe('BookList Component Tests', () => {
   test('Should display a book in the list when there is one book', () => {
     // Create the mocked store with one book in the preloaded state
     const mockedStore = createStore({
-      books: [{ title: bookTitleName, author: bookAuthorName, id: bookId }],
+      books: [{ title: bookTitleName, authors: bookAuthorName, id: bookId }],
     })
 
     // Render the BookList component with the updated store
@@ -42,7 +42,7 @@ describe('BookList Component Tests', () => {
 
   test('Should delete a book from the list', () => {
     const mockedStore = createStore({
-      books: [{ title: bookTitleName, author: bookAuthorName, id: bookId }],
+      books: [{ title: bookTitleName, authors: bookAuthorName, id: bookId }],
     })
 
     const { container } = setup(BookList, mockedStore)
@@ -61,7 +61,7 @@ describe('BookList Component Tests', () => {
       books: [
         {
           title: bookTitleName,
-          author: bookAuthorName,
+          authors: bookAuthorName,
           id: bookId,
           isFavorite: false,
         },
