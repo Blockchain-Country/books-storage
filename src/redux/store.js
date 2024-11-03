@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import booksReducer from './slices/booksSlice'
 import filterReducer from './slices/filterSlice'
 import searchBookReducer from './slices/searchBookSlice'
+import errorReducer from './slices/errorSlice'
 
 const createStore = (preloadedState) => {
   return configureStore({
@@ -9,6 +10,7 @@ const createStore = (preloadedState) => {
       books: booksReducer,
       filter: filterReducer,
       booksSearch: searchBookReducer,
+      errorMessage: errorReducer,
     },
     preloadedState,
   })

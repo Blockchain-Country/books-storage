@@ -3,6 +3,7 @@ import BookFilter from './components/bookFilters/BookFilter'
 import BookForm from './components/manualBookForm/ManualBookForm'
 import SearchBookForm from './components/searchBookForm/SearchBookForm'
 import BookList from './components/bookList/BookList'
+import Error from './components/error/Error'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <BookList />
         </div>
       </main>
+      <Error />
     </div>
   )
 }

@@ -9,6 +9,7 @@ import {
   selectSearchResults,
   selectIsLoading,
 } from '../../redux/slices/searchBookSlice'
+import { setError } from '../../redux/slices/errorSlice'
 
 const BookFormAPI = () => {
   const dispatch = useDispatch()
@@ -21,9 +22,11 @@ const BookFormAPI = () => {
 
   const handleBookSearchSubmit = (e) => {
     e.preventDefault()
-    if (bookToSearch.trim() !== '') {
+    if (bookToSearch.trim()) {
       dispatch(searchBooks(bookToSearch))
       setIsModalOpen(true)
+    } else {
+      dispatch(setError('Enter Book Name to Search!'))
     }
     setBookToSearch('')
   }

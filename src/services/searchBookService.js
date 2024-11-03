@@ -1,4 +1,4 @@
-export async function searchBookOnGoogle(query) {
+export async function searchBookService(query) {
   const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
   const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
     query
