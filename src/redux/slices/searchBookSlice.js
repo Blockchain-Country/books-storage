@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { searchBookOnGoogle } from '../../services/searchBookService'
+import { searchBookService } from '../../services/searchBookService'
 import { selectBook } from './booksSlice'
+import { setError } from './errorSlice'
 
 export const searchBooks = createAsyncThunk(
-  'booksSearch/searchBooks',
-  async (query, { getState, rejectWithValue }) => {
+  'booksSearch/search',
+  async (query, thunkAPI) => {
     try {
-      const data = await searchBookOnGoogle(query)
+      const data = await searchBookService(query)
 
-      const state = getState()
+      const state = thunkAPI.getState()
       const existingBooks = selectBook(state)
 
       const filteredBooks = data.filter(
@@ -24,7 +25,8 @@ export const searchBooks = createAsyncThunk(
 
       return filteredBooks
     } catch (error) {
-      return rejectWithValue(error.message)
+      thunkAPI.dispatch(setError(error.message))
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
 )
@@ -46,7 +48,7 @@ const searchBooksSlice = createSlice({
     builder
       .addCase(searchBooks.pending, (state) => {
         state.isLoading = true
-        state.error = null
+        // state.error = null
       })
       .addCase(searchBooks.fulfilled, (state, action) => {
         state.isLoading = false
@@ -61,17 +63,9 @@ const searchBooksSlice = createSlice({
 
 export const { clearSearchResults } = searchBooksSlice.actions
 
-let lastSearchResults = []
-
-export const selectSearchResults = (state) => {
-  if (state.booksSearch.searchResults === lastSearchResults) {
-    return lastSearchResults
-  }
-  lastSearchResults = state.booksSearch.searchResults
-  return lastSearchResults
-}
+export const selectSearchResults = (state) => state.booksSearch.searchResults
 
 export const selectIsLoading = (state) => state.booksSearch?.isLoading || false
-export const selectError = (state) => state.booksSearch?.error || null
+// export const selectError = (state) => state.booksSearch?.error || null
 
 export default searchBooksSlice.reducer

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addBook, selectBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
 import './ManualBookForm.css'
+import { setError } from '../../redux/slices/errorSlice'
 
 const BookForm = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,8 @@ const BookForm = () => {
       if (!filteredBooks) {
         dispatch(addBook(createBook({ title, authors })))
       }
+    } else {
+      dispatch(setError('Enter both Title and Author!'))
     }
     setTitle('')
     setAuthors('')

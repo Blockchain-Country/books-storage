@@ -11,6 +11,7 @@ import {
   selectTitleFilter,
   selectAuthorsFilter,
 } from '../../redux/slices/filterSlice'
+import { setError } from '../../redux/slices/errorSlice'
 
 const BookList = () => {
   const books = useSelector(selectBook)
@@ -22,6 +23,8 @@ const BookList = () => {
     books.forEach((book) => {
       if (book.id === id && !book.isFavorite) {
         dispatch(deleteBook(id))
+      } else if (book.isFavorite) {
+        dispatch(setError("Can't Delete Favorite Book!"))
       }
     })
   }
