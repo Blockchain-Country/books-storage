@@ -7,22 +7,25 @@ import { setError } from '../../redux/slices/errorSlice'
 
 const BookForm = () => {
   const dispatch = useDispatch()
-
   const [title, setTitle] = useState('')
   const [authors, setAuthors] = useState('')
-
   const books = useSelector(selectBook)
+
+  const filterExistingBooks = () => {
+    return books.find(
+      (existedBook) =>
+        existedBook.title.toLowerCase() === title.toLowerCase() &&
+        existedBook.authors.toLowerCase() === authors.toLowerCase()
+    )
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (title.trim() && authors.trim()) {
-      const filteredBooks = books.find(
-        (existedBook) =>
-          existedBook.title.toLowerCase() === title.toLowerCase() &&
-          existedBook.authors.toLowerCase() === authors.toLowerCase()
-      )
-      if (!filteredBooks) {
+      if (!filterExistingBooks()) {
         dispatch(addBook(createBook({ title, authors })))
+      } else {
+        dispatch(setError('The book is already in the List!'))
       }
     } else {
       dispatch(setError('Enter both Title and Author!'))
