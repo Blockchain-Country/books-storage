@@ -3,30 +3,30 @@ import { searchBookService } from '../../services/searchBookService'
 import { selectBook } from './booksSlice'
 import { setError } from './errorSlice'
 
+// Helper function to filter books that are already in the store
+const filterExistingBooks = (state, data) => {
+  const existingBooks = selectBook(state)
+  return data.filter(
+    (foundBook) =>
+      !existingBooks.some(
+        (existingBook) =>
+          existingBook.title.toLowerCase() === foundBook.title.toLowerCase() &&
+          existingBook.authors.toLowerCase() === foundBook.authors.toLowerCase()
+      )
+  )
+}
+
 export const searchBooks = createAsyncThunk(
   'booksSearch/search',
   async (query, thunkAPI) => {
     try {
       const data = await searchBookService(query)
-
       const state = thunkAPI.getState()
-      const existingBooks = selectBook(state)
 
-      const filteredBooks = data.filter(
-        (foundBook) =>
-          !existingBooks.some(
-            (existingBook) =>
-              existingBook.title.toLowerCase() ===
-                foundBook.title.toLowerCase() &&
-              existingBook.authors.toLowerCase() ===
-                foundBook.authors.toLowerCase()
-          )
-      )
-
-      return filteredBooks
+      return filterExistingBooks(state, data)
     } catch (error) {
-      thunkAPI.dispatch(setError(error.message))
-      return thunkAPI.rejectWithValue(error.message)
+      thunkAPI.dispatch(setError(error))
+      return thunkAPI.rejectWithValue(error)
     }
   }
 )
@@ -48,7 +48,6 @@ const searchBooksSlice = createSlice({
     builder
       .addCase(searchBooks.pending, (state) => {
         state.isLoading = true
-        // state.error = null
       })
       .addCase(searchBooks.fulfilled, (state, action) => {
         state.isLoading = false
@@ -64,8 +63,6 @@ const searchBooksSlice = createSlice({
 export const { clearSearchResults } = searchBooksSlice.actions
 
 export const selectSearchResults = (state) => state.booksSearch.searchResults
-
-export const selectIsLoading = (state) => state.booksSearch?.isLoading || false
-// export const selectError = (state) => state.booksSearch?.error || null
+export const selectIsLoading = (state) => state.booksSearch.isLoading
 
 export default searchBooksSlice.reducer

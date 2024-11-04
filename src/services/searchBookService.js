@@ -6,6 +6,10 @@ export async function searchBookService(query) {
 
   try {
     const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
     const data = await response.json()
 
     if (data.items && data.items.length > 0) {
@@ -24,7 +28,7 @@ export async function searchBookService(query) {
       return []
     }
   } catch (error) {
-    console.error('Error searching for books:', error)
-    throw error
+    console.error('Error searching for books:', error.message)
+    throw error.message
   }
 }

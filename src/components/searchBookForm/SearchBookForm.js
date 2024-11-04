@@ -15,9 +15,7 @@ const BookFormAPI = () => {
   const dispatch = useDispatch()
   const [bookToSearch, setBookToSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
-
   const isLoading = useSelector(selectIsLoading)
-
   const searchResults = useSelector(selectSearchResults)
 
   const handleBookSearchSubmit = (e) => {
@@ -53,7 +51,11 @@ const BookFormAPI = () => {
             value={bookToSearch}
           ></input>
         </div>
-        <button type="submit" data-testid="bookSearchSubmit_btn">
+        <button
+          type="submit"
+          disabled={isLoading}
+          data-testid="bookSearchSubmit_btn"
+        >
           {isLoading ? <RiLoader2Line className="spinner" /> : 'Search'}
         </button>
       </form>
