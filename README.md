@@ -1,4 +1,4 @@
-# BC Country Book Storage App
+# Book Storage App
 
 This app is deployed to production and can be viewed at [https://bc-country.com/](https://bc-country.com/).
 
