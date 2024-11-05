@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header" data-testid="app_header">
-        <h1>My Book Storage</h1>
+        <h1>My Books Storage</h1>
       </header>
       <main className="app-main">
         <div className="app-left-column">

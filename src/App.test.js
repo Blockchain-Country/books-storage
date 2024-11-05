@@ -41,9 +41,9 @@ describe('App Component Tests', () => {
     bookList_Component = screen.getByTestId('bookList_component')
   })
 
-  test('Should render the Header to be in the DOM and should contain text "My Book Storage"', async () => {
+  test('Should render the Header to be in the DOM and should contain text "My Books Storage"', async () => {
     expect(header).toBeInTheDocument()
-    expect(header).toHaveTextContent('My Book Storage')
+    expect(header).toHaveTextContent('My Books Storage')
   })
 
   test('Should render the ManualBookForm component in the DOM', () => {
