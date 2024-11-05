@@ -1,6 +1,6 @@
 {
-  "short_name": "BookStorage",
-  "name": "My Book Storage",
+  "short_name": "BS",
+  "name": "Books Storage",
   "icons": [
     {
       "src": "favicon.ico",
