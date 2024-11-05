@@ -1,6 +1,6 @@
-# Book Storage App
+# Books Storage App
 
-This app is deployed to production and can be viewed at [https://bc-country.com/](https://bc-country.com/).
+This app is deployed to production and can be viewed at [https://books-storage.com/](https://books-storage.com/).
 
 This project is a book storage application built with React. It allows users to search for books, add them to their personal collection, and manage their stored books. User authentication and secure access are handled using Firebase Authentication.
 
@@ -40,7 +40,7 @@ If you aren't satisfied with the build setup and configuration, you can `eject` 
 This application uses Firebase for user authentication. Firebase setup is handled in the `firebaseConfig.js` file and includes the necessary configuration for connecting with Firebase Authentication. Ensure you have a valid Firebase configuration setup and Firebase API keys stored in your `.env` file as follows:
 
 ```
-REACT_APP_FIREBASE_API_KEY=your_api_key_here 
+REACT_APP_FIREBASE_API_KEY=your_api_key_here
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 REACT_APP_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
@@ -64,7 +64,7 @@ To deploy this app to [Netlify](https://www.netlify.com/), follow these steps:
 
 1. Link your GitLab repository with Netlify.
 2. Set the environment variables for Firebase and Google Books API in the Netlify dashboard.
-3. Configure your custom domain (e.g., `bc-country.com`) in the domain settings on Netlify.
+3. Configure your custom domain (e.g., `books-storage.com`) in the domain settings on Netlify.
 
 For further guidance, see the [Netlify deployment documentation](https://docs.netlify.com/).
 
