@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { TbStar } from 'react-icons/tb'
-import { TbStarFilled } from 'react-icons/tb'
+import Book from '../book/Book'
 import './BookList.css'
 import {
   selectBook,
@@ -14,8 +13,8 @@ import {
 import { setError } from '../../redux/slices/errorSlice'
 
 const BookList = () => {
-  const books = useSelector(selectBook)
   const dispatch = useDispatch()
+  const books = useSelector(selectBook)
   const titleFilter = useSelector(selectTitleFilter)
   const authorsFilter = useSelector(selectAuthorsFilter)
 
@@ -49,35 +48,13 @@ const BookList = () => {
             <p data-testid="no_books_sign">No books in my list...</p>
           ) : (
             filteredBooksArr.map((book, i) => (
-              <li key={book.id} data-testid={book.id}>
-                <div className="book-info">
-                  <span>{++i}. </span>
-                  <span>{'"'}</span>
-                  <span>{book.title}</span>
-                  <span>
-                    {'" '}
-                    by <strong>{book.authors}</strong>
-                  </span>
-                </div>
-                <div className="book-actions">
-                  <span
-                    onClick={() => toggleFavoriteBook(book.id)}
-                    data-testid={`isFavorite_${book.isFavorite}`}
-                  >
-                    {book.isFavorite ? (
-                      <TbStarFilled className="star-icon" />
-                    ) : (
-                      <TbStar className="star-icon" />
-                    )}
-                  </span>
-                  <button
-                    onClick={() => handleDeleteBook(book.id)}
-                    data-testid="delete_book_btn"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
+              <Book
+                key={book.id}
+                book={book}
+                index={i}
+                onHandleDeleteBook={handleDeleteBook}
+                onToggleFavoriteBook={toggleFavoriteBook}
+              />
             ))
           )}
         </ul>
