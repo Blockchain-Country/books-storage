@@ -7,8 +7,9 @@ import {
   selectAuthorsFilter,
   resetAllFilters,
 } from '../../redux/slices/filterSlice'
+import Button from '../common/button/Button'
 
-const BookFilter = () => {
+const BookFilter = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const filterTitle = useSelector(selectTitleFilter)
   const filterAuthors = useSelector(selectAuthorsFilter)
@@ -34,31 +35,33 @@ const BookFilter = () => {
   }
 
   return (
-    <div className="app-block filter" data-testid="book_filter_component">
-      <div className="filter-row">
-        <div className="filter-group">
+    <section data-testid={testId}>
+      <div data-testid="filter_container">
+        <div data-testid="filter_title_wrapper">
           <input
             type="text"
             placeholder="Filter by title..."
             value={filterTitle}
             onChange={handleTitleFilter}
-            data-testid="filterByTitle_input"
+            data-testid="filter_title_input"
           ></input>
         </div>
-        <div className="filter-group">
+        <div data-testid="filter_author_wrapper">
           <input
             type="text"
             placeholder="Filter by author(s)..."
             value={filterAuthors}
             onChange={handleAuthorsFilter}
-            data-testid="filterByAuthors_input"
+            data-testid="filter_author_input"
           ></input>
         </div>
-        <button onClick={handleResetFilters} data-testid="clearAllFilters_btn">
-          Clear All Filters
-        </button>
+        <Button
+          text="Clear All Filters"
+          onClick={handleResetFilters}
+          data-testid="filter_clear_btn"
+        ></Button>
       </div>
-    </div>
+    </section>
   )
 }
 

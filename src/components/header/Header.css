@@ -1,0 +1,55 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background-color: #0a1a2d;
+  padding: 2rem 3rem;
+  z-index: 1000;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+.header-logo {
+  margin: 1rem;
+}
+
+.header-title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.header-login {
+  margin: 1rem;
+}
+
+.login-btn {
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.login-btn:hover {
+  text-shadow: 0 0 8px #ffffff;
+}
+
+@media screen and (max-width: 650px) {
+  .header-container {
+    flex-direction: column;
+    padding: 0;
+    height: auto;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .login-btn {
+    font-size: 1.3rem;
+  }
+}

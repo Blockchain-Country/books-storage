@@ -35,10 +35,10 @@ describe('App Component Tests', () => {
     setup(App, store)
 
     //main components elements:
-    header = screen.getByTestId('app_header')
-    manualBookForm_Component = screen.getByTestId('manualBookForm_component')
-    bookFilter_Component = screen.getByTestId('book_filter_component')
-    bookList_Component = screen.getByTestId('bookList_component')
+    header = screen.getByTestId('header_container')
+    manualBookForm_Component = screen.getByTestId('manualAddBook_section')
+    bookFilter_Component = screen.getByTestId('filters_section')
+    bookList_Component = screen.getByTestId('bookList_section')
   })
 
   test('Should render the Header to be in the DOM and should contain text "My Books Storage"', async () => {
@@ -65,14 +65,14 @@ describe('App functional Tests', () => {
     setup(App, store)
 
     // ManualBookForm elements:
-    titleInput = screen.getByTestId('manualBookForm_titleInput')
-    authorsInput = screen.getByTestId('manualBookForm_authorsInput')
-    submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
-    bookList_Component = screen.getByTestId('bookList_component')
+    titleInput = screen.getByTestId('manualAddBook_input_title')
+    authorsInput = screen.getByTestId('manualAddBook_input_author')
+    submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
+    bookList_Component = screen.getByTestId('bookList_section')
     // BookFilter elements:
-    filterByTitleInput = screen.getByTestId('filterByTitle_input')
-    filterbyAuthorsInput = screen.getByTestId('filterByAuthors_input')
-    clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
+    filterByTitleInput = screen.getByTestId('filter_title_input')
+    filterbyAuthorsInput = screen.getByTestId('filter_author_input')
+    clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
   })
 
   test('Should Submit a new book to the BookList component', () => {

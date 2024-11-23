@@ -13,10 +13,10 @@ describe('ManualBookForm Component Tests', () => {
     setup(App, store)
 
     // ManualBookForm elements:
-    titleInput = screen.getByTestId('manualBookForm_titleInput')
-    authorsInput = screen.getByTestId('manualBookForm_authorsInput')
-    submitBookBtn = screen.getByTestId('manualBookForm_submitBtn')
-    bookListComponent = screen.getByTestId('bookList_component')
+    titleInput = screen.getByTestId('manualAddBook_input_title')
+    authorsInput = screen.getByTestId('manualAddBook_input_author')
+    submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
+    bookListComponent = screen.getByTestId('bookList_section')
   })
 
   test('Should render Title input', () => {

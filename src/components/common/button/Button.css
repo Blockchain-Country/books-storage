@@ -1,0 +1,47 @@
+.componentButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  min-width: 8rem;
+  height: 3.5rem;
+  border: none;
+  padding: 0 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.componentButton:hover {
+  background-color: #0056b3;
+}
+
+.componentButton:active {
+  background-color: #016adb;
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.componentButton:disabled {
+  background-color: #0056b3;
+  color: darkgray;
+  cursor: not-allowed;
+}
+
+[data-testid='search_spinner'] {
+  font-size: 1.5rem;
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

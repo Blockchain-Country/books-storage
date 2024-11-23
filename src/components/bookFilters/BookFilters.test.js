@@ -13,9 +13,9 @@ describe('BookFilter Component Tests', () => {
     setup(App, store)
 
     // BookFilter elements:
-    filterByTitleInput = screen.getByTestId('filterByTitle_input')
-    filterbyAuthorsInput = screen.getByTestId('filterByAuthors_input')
-    clearAllFiltersBtn = screen.getByTestId('clearAllFilters_btn')
+    filterByTitleInput = screen.getByTestId('filter_title_input')
+    filterbyAuthorsInput = screen.getByTestId('filter_author_input')
+    clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
   })
 
   test('Should render TitleFilter input', () => {

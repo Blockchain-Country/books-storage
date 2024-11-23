@@ -1,48 +1,23 @@
-.book-form-api {
+form[data-testid='search_form'] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+div[data-testid='search_input_wrapper'] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
-.book-form-api label {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.book-form-api input {
-  width: 80%;
-  padding: 8px;
-  margin-bottom: 10px;
+input[data-testid='search_form_input'] {
+  width: 90%;
+  padding: 0.5rem 1rem;
   border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.book-form-api button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  margin: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.book-form-api button:hover {
-  background-color: #0056b3;
-}
-
-.book-form-api .spinner {
-  animation: spinner 1s infinite linear;
-  padding: 1px 14.5px;
-}
-
-@keyframes spinner {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  border-radius: 5px;
+  margin: 0.5rem;
 }
