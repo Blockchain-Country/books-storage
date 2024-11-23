@@ -1,4 +1,4 @@
-.header-container {
+header[data-testid='header_container'] {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,42 +14,42 @@
   box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
 }
 
-.header-logo {
+span[data-testid='header_logo'] {
   margin: 1rem;
 }
 
-.header-title {
+h1[data-testid='header_title'] {
   text-align: center;
   font-size: 2rem;
 }
 
-.header-login {
+div[data-testid='header_login_wrapper'] {
   margin: 1rem;
 }
 
-.login-btn {
+[data-testid='header_login_btn'] {
   font-size: 1.5rem;
   text-decoration: none;
   cursor: pointer;
   color: #fff;
 }
 
-.login-btn:hover {
+[data-testid='header_login_btn']:hover {
   text-shadow: 0 0 8px #ffffff;
 }
 
 @media screen and (max-width: 650px) {
-  .header-container {
+  header[data-testid='header_container'] {
     flex-direction: column;
     padding: 0;
     height: auto;
   }
 
-  .header-title {
+  h1[data-testid='header_title'] {
     font-size: 1.5rem;
   }
 
-  .login-btn {
+  [data-testid='header_login_btn'] {
     font-size: 1.3rem;
   }
 }

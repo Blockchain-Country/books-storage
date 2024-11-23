@@ -38,11 +38,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 650px) {
   [data-testid='app_main'] {
     width: 100%;
     flex-direction: column;
     justify-content: start;
+    padding-top: 13rem;
     gap: 1rem;
   }
 
