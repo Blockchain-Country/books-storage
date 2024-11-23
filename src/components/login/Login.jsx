@@ -22,37 +22,39 @@ const Login = () => {
   }
 
   return (
-    <div data-testid="login_container">
-      <div data-testid="back_btn_container">
-        <Link to="/" data-testid="login_page_back_btn">
+    <div data-testid="login_page">
+      <div data-testid="login_back_btn_container">
+        <Link to="/" data-testid="login_back_btn">
           <IoArrowBackCircleOutline />
         </Link>
       </div>
-      <form data-testid="login_form_container" onSubmit={handleLogin}>
-        <h2 className="login-title">Login</h2>
-        <div className="username-element">
+      <form data-testid="login_form" onSubmit={handleLogin}>
+        <h3 data-testid="login_form_title">Login</h3>
+        <div data-testid="login_form_username_wrapper">
           <input
             type="text"
             name="username"
             placeholder="Username"
             value={credentials.username}
             onChange={handleChange}
+            data-testid="login_form_username_input"
           />
         </div>
-        <div className="password-element">
+        <div data-testid="login_form_password_wrapper">
           <input
             type="password"
             name="password"
             placeholder="Password"
             value={credentials.password}
             onChange={handleChange}
+            data-testid="login_form_password_input"
           />
         </div>
         <Button
           text="Login"
           className="form-login-btn"
-          data-testid="form_login_btn"
           type="submit"
+          data-testid="login_form_submit_btn"
         />
       </form>
     </div>

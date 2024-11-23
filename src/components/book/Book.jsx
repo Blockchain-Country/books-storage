@@ -3,7 +3,7 @@ import { TbStarFilled } from 'react-icons/tb'
 import './Book.css'
 import Button from '../common/button/Button'
 
-const book = ({
+const Book = ({
   book,
   index,
   onHandleDeleteBook,
@@ -43,4 +43,4 @@ const book = ({
   )
 }
 
-export default book
+export default Book

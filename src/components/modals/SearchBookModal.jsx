@@ -1,4 +1,3 @@
-// BookSearchModal.js
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addBook, selectBook } from '../../redux/slices/booksSlice'
@@ -6,7 +5,7 @@ import createBook from '../../utils/createBook'
 import './SearchBookModal.css'
 import Button from '../common/button/Button'
 
-const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
+const SearchBookModal = ({ isOpen, onClose, booksFoundList }) => {
   const dispatch = useDispatch()
   const books = useSelector(selectBook)
 
@@ -31,7 +30,7 @@ const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
   }
 
   return (
-    <div data-testid="modal_overlay">
+    <div open={isOpen} data-testid="modal_overlay">
       <div data-testid="modal_component">
         <div data-testid="modal_header">
           <Button
@@ -40,16 +39,19 @@ const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
             onClick={onClose}
           ></Button>
         </div>
-        <div data-testid="modal_body_content">
+        <div data-testid="modal_body">
           {filteredAddedBooks.map((bookFound, _) => (
-            <div key={bookFound.bookId} data-testid="modal_book_item">
-              <h3 data-testid="modal_book_title">{bookFound.title}</h3>
+            <div
+              key={bookFound.bookId}
+              data-testid={`modal_book_item id=${bookFound.bookId}`}
+            >
+              <h2 data-testid="modal_book_title">{bookFound.title}</h2>
               <div>
                 {bookFound.image ? (
                   <img
-                    data-testid="modal_book_img"
                     src={bookFound.image}
                     alt={`${bookFound.title} cover`}
+                    data-testid="modal_book_img"
                   />
                 ) : (
                   'No image available'
@@ -74,7 +76,7 @@ const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
               <Button
                 text="Add Book"
                 onClick={() => handleAddBook(bookFound)}
-                data-testid="modal_addBook_btn"
+                data-testid="modal_add_book_btn"
               ></Button>
             </div>
           ))}
@@ -84,4 +86,4 @@ const BookSearchModal = ({ isOpen, onClose, booksFoundList }) => {
   )
 }
 
-export default BookSearchModal
+export default SearchBookModal

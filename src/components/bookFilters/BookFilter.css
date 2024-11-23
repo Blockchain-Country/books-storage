@@ -22,7 +22,7 @@ input[data-testid='filter_author_input'] {
   margin: 0.5rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 650px) {
   div[data-testid='filter_container'] {
     flex-direction: column;
     align-items: center;
