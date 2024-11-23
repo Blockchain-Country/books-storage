@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RiLoader2Line } from 'react-icons/ri'
 import SearchBookModal from '../modals/SearchBookModal'
 import './SearchBookForm.css'
 import {
@@ -10,8 +9,9 @@ import {
   selectIsLoading,
 } from '../../redux/slices/searchBookSlice'
 import { setError } from '../../redux/slices/errorSlice'
+import Button from '../common/button/Button'
 
-const BookFormAPI = () => {
+const SearchBookForm = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const [bookToSearch, setBookToSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -36,28 +36,24 @@ const BookFormAPI = () => {
   }
 
   return (
-    <div
-      className="app-block book-form-api"
-      data-testid="bookFormAPI_component"
-      onSubmit={handleBookSearchSubmit}
-    >
-      <h2>Let's start!</h2>
-      <form className="book-form">
-        <div>
+    <section data-testid={testId}>
+      <form onSubmit={handleBookSearchSubmit} data-testid="search_form">
+        <h3 data-testid="search_form_title">Let's start!</h3>
+        <div data-testid="search_input_wrapper">
           <input
             type="text"
-            placeholder="Global books search..."
+            placeholder="Global book search..."
             onChange={(e) => setBookToSearch(e.target.value)}
             value={bookToSearch}
+            data-testid="search_form_input"
           ></input>
         </div>
-        <button
+        <Button
+          text="Search"
           type="submit"
           disabled={isLoading}
-          data-testid="bookSearchSubmit_btn"
-        >
-          {isLoading ? <RiLoader2Line className="spinner" /> : 'Search'}
-        </button>
+          data-testid="search_form_submit_btn"
+        ></Button>
       </form>
       {isModalOpen && !isLoading && (
         <SearchBookModal
@@ -66,8 +62,8 @@ const BookFormAPI = () => {
           booksFoundList={searchResults}
         />
       )}
-    </div>
+    </section>
   )
 }
 
-export default BookFormAPI
+export default SearchBookForm

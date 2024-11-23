@@ -12,7 +12,7 @@ import {
 } from '../../redux/slices/filterSlice'
 import { setError } from '../../redux/slices/errorSlice'
 
-const BookList = () => {
+const BookList = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const books = useSelector(selectBook)
   const titleFilter = useSelector(selectTitleFilter)
@@ -40,26 +40,25 @@ const BookList = () => {
   })
 
   return (
-    <div className="app-block book-list" data-testid="bookList_component">
-      <h2>My Book List</h2>
-      <div className="book-list">
-        <ul>
-          {!filteredBooksArr.length ? (
-            <p data-testid="no_books_sign">No books in my list...</p>
-          ) : (
-            filteredBooksArr.map((book, i) => (
-              <Book
-                key={book.id}
-                book={book}
-                index={i}
-                onHandleDeleteBook={handleDeleteBook}
-                onToggleFavoriteBook={toggleFavoriteBook}
-              />
-            ))
-          )}
-        </ul>
-      </div>
-    </div>
+    <section data-testid={testId}>
+      <h3 data-testid="bookList_title">My Book List</h3>
+      <ul data-testid="bookList_container">
+        {!filteredBooksArr.length ? (
+          <p data-testid="bookList_emptyMsg">No books in my list...</p>
+        ) : (
+          filteredBooksArr.map((book, i) => (
+            <Book
+              key={book.id}
+              book={book}
+              index={i}
+              onHandleDeleteBook={handleDeleteBook}
+              onToggleFavoriteBook={toggleFavoriteBook}
+              data-testid={`bookList_item id=${book.id}`}
+            />
+          ))
+        )}
+      </ul>
+    </section>
   )
 }
 

@@ -4,8 +4,9 @@ import { addBook, selectBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
 import './ManualBookForm.css'
 import { setError } from '../../redux/slices/errorSlice'
+import Button from '../common/button/Button'
 
-const BookForm = () => {
+const ManualBookForm = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [authors, setAuthors] = useState('')
@@ -35,40 +36,34 @@ const BookForm = () => {
   }
 
   return (
-    <div
-      className="app-block book-form"
-      data-testid="manualBookForm_component"
-      onSubmit={handleSubmit}
-    >
-      <form className="book-form">
-        <label>or</label>
-        <h2>Add Book</h2>
-        <div>
-          <label>Title:</label>
+    <section data-testid={testId}>
+      <form onSubmit={handleSubmit} data-testid="manualAddBook_form">
+        <p data-testid="manualAddBook_label">or</p>
+        <h3 data-testid="manualAddBook_title">Add Book</h3>
+        <div data-testid="manualAddBook_inputs_wrapper">
           <input
             type="text"
             placeholder="Enter book title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            data-testid="manualBookForm_titleInput"
+            data-testid="manualAddBook_input_title"
           ></input>
-        </div>
-        <div>
-          <label>Author(s): </label>
           <input
             type="text"
             placeholder="Enter book author(s)..."
             value={authors}
             onChange={(e) => setAuthors(e.target.value)}
-            data-testid="manualBookForm_authorsInput"
+            data-testid="manualAddBook_input_author"
           ></input>
         </div>
-        <button type="submit" data-testid="manualBookForm_submitBtn">
-          Add book
-        </button>
+        <Button
+          text="Add book"
+          type="submit"
+          data-testid="manualAddBook_submit_btn"
+        ></Button>
       </form>
-    </div>
+    </section>
   )
 }
 
-export default BookForm
+export default ManualBookForm

@@ -1,40 +1,45 @@
 import { TbStar } from 'react-icons/tb'
 import { TbStarFilled } from 'react-icons/tb'
 import './Book.css'
+import Button from '../common/button/Button'
 
-const book = ({ book, index, onHandleDeleteBook, onToggleFavoriteBook }) => {
+const book = ({
+  book,
+  index,
+  onHandleDeleteBook,
+  onToggleFavoriteBook,
+  ...rest
+}) => {
   return (
-    <>
-      <li className="book-item" key={book.id} data-testid={book.id}>
-        <div className="book-info">
-          <span>{++index}. </span>
-          <span>{'"'}</span>
-          <span>{book.title}</span>
-          <span>
-            {'" '}
-            by <strong>{book.authors}</strong>
-          </span>
+    <li {...rest}>
+      <span data-testid="book_index">{++index}.</span>
+      <div data-testid="book_title_and_author_wrapper">
+        <div data-testid="book_title_wrapper">
+          <span data-testid="book_title">{book.title}</span>
         </div>
-        <div className="book-actions">
-          <span
-            onClick={() => onToggleFavoriteBook(book.id)}
-            data-testid={`isFavorite_${book.isFavorite}`}
-          >
-            {book.isFavorite ? (
-              <TbStarFilled className="star-icon" />
-            ) : (
-              <TbStar className="star-icon" />
-            )}
-          </span>
-          <button
-            onClick={() => onHandleDeleteBook(book.id)}
-            data-testid="delete_book_btn"
-          >
-            Delete
-          </button>
+        <div data-testid="book_author_wrapper">
+          <em>by</em>
+          <span data-testid="book_author">{book.authors}</span>
         </div>
-      </li>
-    </>
+      </div>
+      <div data-testid="book_actions">
+        <span
+          onClick={() => onToggleFavoriteBook(book.id)}
+          data-testid={`book_favorite_toggle_${book.isFavorite}`}
+        >
+          {book.isFavorite ? (
+            <TbStarFilled data-testid="book_favorite_icon" />
+          ) : (
+            <TbStar data-testid="book_nonFavorite_icon" />
+          )}
+        </span>
+        <Button
+          text="Delete"
+          onClick={() => onHandleDeleteBook(book.id)}
+          data-testid="delete_book_btn"
+        ></Button>
+      </div>
+    </li>
   )
 }
 
