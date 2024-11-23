@@ -1,0 +1,4 @@
+# Redirect HTTP to HTTPS
+
+http://books-storage.com/_ https://books-storage.com/:splat 301!
+http://www.books-storage.com/_ https://books-storage.com/:splat 301!
