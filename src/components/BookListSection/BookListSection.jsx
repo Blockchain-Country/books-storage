@@ -39,6 +39,23 @@ const BookListSection = ({ 'data-testid': testId }) => {
     )
   })
 
+  const highlightFilterMatch = (text, filter) => {
+    if (!filter) return text
+
+    const regex = new RegExp(`(${filter})`, 'gi')
+
+    return text.split(regex).map((substring, i) => {
+      if (substring.toLowerCase() === filter.toLowerCase()) {
+        return (
+          <span key={i} data-testid="highlighted_text">
+            {substring}
+          </span>
+        )
+      }
+      return substring
+    })
+  }
+
   return (
     <section data-testid={testId}>
       <h3 data-testid="bookList_title">My Book List</h3>
@@ -54,6 +71,8 @@ const BookListSection = ({ 'data-testid': testId }) => {
               onHandleDeleteBook={handleDeleteBook}
               onToggleFavoriteBook={toggleFavoriteBook}
               data-testid={`bookList_item id=${book.id}`}
+              bookTitle={highlightFilterMatch(book.title, titleFilter)}
+              bookAuthor={highlightFilterMatch(book.authors, authorsFilter)}
             />
           ))
         )}
