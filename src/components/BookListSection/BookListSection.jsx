@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import Book from '../book/Book'
-import './BookList.css'
+import Book from './book/Book'
+import './BookListSection.css'
 import {
   selectBook,
   deleteBook,
@@ -12,7 +12,7 @@ import {
 } from '../../redux/slices/filterSlice'
 import { setError } from '../../redux/slices/errorSlice'
 
-const BookList = ({ 'data-testid': testId }) => {
+const BookListSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const books = useSelector(selectBook)
   const titleFilter = useSelector(selectTitleFilter)
@@ -62,4 +62,4 @@ const BookList = ({ 'data-testid': testId }) => {
   )
 }
 
-export default BookList
+export default BookListSection

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import SearchBookModal from '../modals/SearchBookModal'
-import './SearchBookForm.css'
+import './SearchBookSection.css'
 import {
   searchBooks,
   clearSearchResults,
@@ -10,8 +10,9 @@ import {
 } from '../../redux/slices/searchBookSlice'
 import { setError } from '../../redux/slices/errorSlice'
 import Button from '../common/button/Button'
+import Input from '../common/input/Input'
 
-const SearchBookForm = ({ 'data-testid': testId }) => {
+const SearchBookSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const [bookToSearch, setBookToSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -40,13 +41,13 @@ const SearchBookForm = ({ 'data-testid': testId }) => {
       <form onSubmit={handleBookSearchSubmit} data-testid="search_form">
         <h3 data-testid="search_form_title">Let's start!</h3>
         <div data-testid="search_input_wrapper">
-          <input
+          <Input
             type="text"
             placeholder="Global book search..."
             onChange={(e) => setBookToSearch(e.target.value)}
             value={bookToSearch}
             data-testid="search_form_input"
-          ></input>
+          ></Input>
         </div>
         <Button
           text="Search"
@@ -66,4 +67,4 @@ const SearchBookForm = ({ 'data-testid': testId }) => {
   )
 }
 
-export default SearchBookForm
+export default SearchBookSection

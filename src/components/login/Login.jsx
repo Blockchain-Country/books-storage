@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { IoArrowBackCircleOutline } from 'react-icons/io5'
 import Button from '../common/button/Button'
 import './Login.css'
+import Input from '../common/input/Input'
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -31,7 +32,7 @@ const Login = () => {
       <form data-testid="login_form" onSubmit={handleLogin}>
         <h3 data-testid="login_form_title">Login</h3>
         <div data-testid="login_form_username_wrapper">
-          <input
+          <Input
             type="text"
             name="username"
             placeholder="Username"
@@ -41,7 +42,7 @@ const Login = () => {
           />
         </div>
         <div data-testid="login_form_password_wrapper">
-          <input
+          <Input
             type="password"
             name="password"
             placeholder="Password"

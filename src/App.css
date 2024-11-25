@@ -24,7 +24,7 @@
   width: 65%;
 }
 
-[data-testid='search_section'],
+[data-testid='search_book_section'],
 [data-testid='manualAddBook_section'],
 [data-testid='filters_section'],
 [data-testid='bookList_section'] {
@@ -53,7 +53,7 @@
     gap: 1rem;
   }
 
-  [data-testid='search_section'],
+  [data-testid='search_book_section'],
   [data-testid='manualAddBook_section'],
   [data-testid='filters_section'],
   [data-testid='bookList_section'] {
