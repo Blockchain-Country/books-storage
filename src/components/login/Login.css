@@ -9,6 +9,12 @@ div[data-testid='login_page'] {
 a[data-testid='login_back_btn'] {
   font-size: 2.5rem;
   color: #fff;
+  display: inline-block;
+  transition: transform 0.3s linear;
+}
+
+a[data-testid='login_back_btn']:hover {
+  transform: scale(1.1);
 }
 
 form[data-testid='login_form'] {

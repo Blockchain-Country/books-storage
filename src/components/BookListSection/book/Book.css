@@ -4,7 +4,7 @@ li[data-testid^='bookList_item'] {
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
 }

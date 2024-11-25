@@ -15,7 +15,7 @@ const Header = () => {
       <div data-testid="header_login_wrapper">
         {location.pathname !== '/login' && (
           <Link to="/login" data-testid="header_login_btn">
-            <span>Login</span>
+            Login
           </Link>
         )}
       </div>
