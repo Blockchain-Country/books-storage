@@ -66,13 +66,13 @@ const BookListSection = ({ 'data-testid': testId }) => {
           filteredBooksArr.map((book, i) => (
             <Book
               key={book.id}
-              book={book}
               index={i}
+              book={book}
+              bookTitle={highlightFilterMatch(book.title, titleFilter)}
+              bookAuthor={highlightFilterMatch(book.authors, authorsFilter)}
               onHandleDeleteBook={handleDeleteBook}
               onToggleFavoriteBook={toggleFavoriteBook}
               data-testid={`bookList_item id=${book.id}`}
-              bookTitle={highlightFilterMatch(book.title, titleFilter)}
-              bookAuthor={highlightFilterMatch(book.authors, authorsFilter)}
             />
           ))
         )}

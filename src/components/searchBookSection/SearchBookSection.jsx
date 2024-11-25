@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchBookModal from '../modals/SearchBookModal'
+import SearchBookModal from './searchBookModal/SearchBookModal'
 import './SearchBookSection.css'
 import {
   searchBooks,

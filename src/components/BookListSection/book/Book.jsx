@@ -4,16 +4,16 @@ import './Book.css'
 import Button from '../../common/button/Button'
 
 const Book = ({
-  book,
   index,
-  onHandleDeleteBook,
-  onToggleFavoriteBook,
+  book,
   bookTitle,
   bookAuthor,
-  ...rest
+  onHandleDeleteBook,
+  onToggleFavoriteBook,
+  'data-testid': testId,
 }) => {
   return (
-    <li {...rest}>
+    <li data-testid={testId}>
       <span data-testid="book_index">{++index}.</span>
       <div data-testid="book_title_and_author_wrapper">
         <div data-testid="book_title_wrapper">
