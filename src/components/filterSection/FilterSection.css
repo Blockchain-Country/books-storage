@@ -13,15 +13,6 @@ div[data-testid='filter_author_wrapper'] {
   flex: 1;
 }
 
-input[data-testid='filter_title_input'],
-input[data-testid='filter_author_input'] {
-  width: 90%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 0.5rem;
-}
-
 @media screen and (max-width: 650px) {
   div[data-testid='filter_container'] {
     flex-direction: column;

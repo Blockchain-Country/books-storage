@@ -1,7 +1,7 @@
 import { TbStar } from 'react-icons/tb'
 import { TbStarFilled } from 'react-icons/tb'
 import './Book.css'
-import Button from '../common/button/Button'
+import Button from '../../common/button/Button'
 
 const Book = ({
   book,

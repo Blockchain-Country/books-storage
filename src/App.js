@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import BookFilter from './components/bookFilters/BookFilter'
-import ManualBookForm from './components/manualBookForm/ManualBookForm'
-import SearchBookForm from './components/searchBookForm/SearchBookForm'
-import BookList from './components/bookList/BookList'
+import FilterSection from './components/filterSection/FilterSection'
+import ManualAddBookSection from './components/manualAddBookSection/ManualAddBookSection'
+import SearchBookSection from './components/searchBookSection/SearchBookSection'
+import BookListSection from './components/BookListSection/BookListSection'
 import Header from './components/header/Header'
 import Login from './components/login/Login'
 import Error from './components/error/Error'
@@ -25,12 +25,12 @@ function App() {
               element={
                 <>
                   <div data-testid="app_left_column">
-                    <SearchBookForm data-testid="search_section" />
-                    <ManualBookForm data-testid="manualAddBook_section" />
+                    <SearchBookSection data-testid="search_book_section" />
+                    <ManualAddBookSection data-testid="manualAddBook_section" />
                   </div>
                   <div data-testid="app_right_column">
-                    <BookFilter data-testid="filters_section" />
-                    <BookList data-testid="bookList_section" />
+                    <FilterSection data-testid="filters_section" />
+                    <BookListSection data-testid="bookList_section" />
                   </div>
                 </>
               }

@@ -8,11 +8,11 @@ const bookAuthorName = 'Test Book Author'
 
 let titleInput, authorsInput, submitBookBtn, bookListComponent
 
-describe('ManualBookForm Component Tests', () => {
+describe('ManualAddBookSection Component Tests', () => {
   beforeEach(() => {
     setup(App, store)
 
-    // ManualBookForm elements:
+    // ManualAddBookSection elements:
     titleInput = screen.getByTestId('manualAddBook_input_title')
     authorsInput = screen.getByTestId('manualAddBook_input_author')
     submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')

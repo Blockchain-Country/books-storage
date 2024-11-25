@@ -30,11 +30,3 @@ div[data-testid='login_form_password_wrapper'] {
   width: 100%;
   margin: 2rem;
 }
-
-input[data-testid='login_form_username_input'],
-input[data-testid='login_form_password_input'] {
-  width: 90%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}

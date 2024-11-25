@@ -13,16 +13,12 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`componentButton ${className}`}
+      className="componentButton"
       data-testid={testId}
       disabled={disabled}
       aria-busy={disabled}
     >
-      {disabled ? (
-        <RiLoader2Line className="buttonSpinner" data-testid="search_spinner" />
-      ) : (
-        text
-      )}
+      {disabled ? <RiLoader2Line data-testid="search_spinner" /> : text}
     </button>
   )
 }

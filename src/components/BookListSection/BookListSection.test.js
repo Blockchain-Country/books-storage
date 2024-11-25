@@ -1,7 +1,7 @@
 import { within, fireEvent } from '@testing-library/react'
 import { v4 as uuidv4 } from 'uuid'
 import { setup } from '../../setupTests'
-import BookList from '../../components/bookList/BookList'
+import BookListSection from './BookListSection'
 import { createStore } from '../../redux/store'
 
 const bookTitleName = 'Test Book Title'
@@ -16,7 +16,7 @@ describe('BookList Component Tests', () => {
     })
 
     // Render the BookList component with the mock store
-    const { container } = setup(BookList, mockedStore)
+    const { container } = setup(BookListSection, mockedStore)
 
     const noBooksSign = within(container).getByTestId('bookList_emptyMsg')
     expect(noBooksSign).toBeInTheDocument()
@@ -29,7 +29,7 @@ describe('BookList Component Tests', () => {
     })
 
     // Render the BookList component with the updated store
-    const { container } = setup(BookList, mockedStore)
+    const { container } = setup(BookListSection, mockedStore)
 
     const noBooksSign = within(container).queryByTestId('bookList_emptyMsg')
     expect(noBooksSign).toBeNull()
@@ -45,7 +45,7 @@ describe('BookList Component Tests', () => {
       books: [{ title: bookTitleName, authors: bookAuthorName, id: bookId }],
     })
 
-    const { container } = setup(BookList, mockedStore)
+    const { container } = setup(BookListSection, mockedStore)
 
     const bookItems = within(container).getByTestId(
       `bookList_item id=${bookId}`
@@ -70,7 +70,7 @@ describe('BookList Component Tests', () => {
       ],
     })
 
-    const { container } = setup(BookList, mockedStore)
+    const { container } = setup(BookListSection, mockedStore)
 
     const bookItems = within(container).getByTestId(
       `bookList_item id=${bookId}`

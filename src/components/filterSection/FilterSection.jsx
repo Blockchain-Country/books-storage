@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import './BookFilter.css'
+import './FilterSection.css'
 import {
   setTitleFilter,
   setAuthorsFilter,
@@ -8,6 +8,7 @@ import {
   resetAllFilters,
 } from '../../redux/slices/filterSlice'
 import Button from '../common/button/Button'
+import Input from '../common/input/Input'
 
 const BookFilter = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
@@ -38,22 +39,22 @@ const BookFilter = ({ 'data-testid': testId }) => {
     <section data-testid={testId}>
       <div data-testid="filter_container">
         <div data-testid="filter_title_wrapper">
-          <input
+          <Input
             type="text"
             placeholder="Filter by title..."
             value={filterTitle}
             onChange={handleTitleFilter}
             data-testid="filter_title_input"
-          ></input>
+          ></Input>
         </div>
         <div data-testid="filter_author_wrapper">
-          <input
+          <Input
             type="text"
             placeholder="Filter by author(s)..."
             value={filterAuthors}
             onChange={handleAuthorsFilter}
             data-testid="filter_author_input"
-          ></input>
+          ></Input>
         </div>
         <Button
           text="Clear All Filters"

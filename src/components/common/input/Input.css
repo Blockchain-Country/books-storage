@@ -1,0 +1,7 @@
+.component_input {
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0.5rem;
+}

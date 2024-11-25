@@ -13,12 +13,3 @@ div[data-testid='manualAddBook_inputs_wrapper'] {
   align-items: center;
   width: 100%;
 }
-
-input[data-testid='manualAddBook_input_title'],
-input[data-testid='manualAddBook_input_author'] {
-  width: 90%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 0.5rem;
-}
