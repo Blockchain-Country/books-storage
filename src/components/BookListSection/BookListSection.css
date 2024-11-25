@@ -23,3 +23,9 @@ ul[data-testid='bookList_container'] {
   align-items: center;
   width: 100%;
 }
+
+span[data-testid='highlighted_text'] {
+  background-color: orange;
+  border-radius: 5px;
+  padding: 0 0.5px;
+}

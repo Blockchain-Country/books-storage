@@ -95,9 +95,3 @@ button[data-testid='delete_book_btn'] {
 button[data-testid='delete_book_btn']:hover {
   background-color: rgb(255, 204, 204);
 }
-
-/* .highlight {
-  background-color: rgba(150, 182, 238, 0.605);
-  border-radius: 5px;
-  padding: 0 0.5px;
-} */

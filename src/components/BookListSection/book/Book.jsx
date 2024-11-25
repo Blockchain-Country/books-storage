@@ -8,6 +8,8 @@ const Book = ({
   index,
   onHandleDeleteBook,
   onToggleFavoriteBook,
+  bookTitle,
+  bookAuthor,
   ...rest
 }) => {
   return (
@@ -15,11 +17,11 @@ const Book = ({
       <span data-testid="book_index">{++index}.</span>
       <div data-testid="book_title_and_author_wrapper">
         <div data-testid="book_title_wrapper">
-          <span data-testid="book_title">{book.title}</span>
+          <span data-testid="book_title">{bookTitle}</span>
         </div>
         <div data-testid="book_author_wrapper">
           <em>by</em>
-          <span data-testid="book_author">{book.authors}</span>
+          <span data-testid="book_author">{bookAuthor}</span>
         </div>
       </div>
       <div data-testid="book_actions">
