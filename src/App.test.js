@@ -68,8 +68,6 @@ describe('App functional Tests', () => {
     setup(App, store)
 
     // ManualAddBookSection form elements:
-    console.log('Screen: ', screen)
-
     titleInput = screen.getByTestId('manualAddBook_input_title')
     authorsInput = screen.getByTestId('manualAddBook_input_author')
     submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
