@@ -7,6 +7,7 @@ import Header from './components/header/Header'
 import Login from './components/login/Login'
 import Error from './components/error/Error'
 import './App.css'
+import RandomBookSection from './components/randomBookSection/RandomBookSection'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                   <div data-testid="app_left_column">
                     <SearchBookSection data-testid="search_book_section" />
                     <ManualAddBookSection data-testid="manualAddBook_section" />
+                    <RandomBookSection data-testid="random_book_section" />
                   </div>
                   <div data-testid="app_right_column">
                     <FilterSection data-testid="filters_section" />

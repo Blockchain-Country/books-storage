@@ -26,6 +26,8 @@
 
 [data-testid='search_book_section'],
 [data-testid='manualAddBook_section'],
+[data-testid='random_book_section'],
+[data-testid='random_book_section'],
 [data-testid='filters_section'],
 [data-testid='bookList_section'] {
   display: flex;
