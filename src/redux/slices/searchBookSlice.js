@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { searchBookService } from '../../services/searchBookService'
+import { searchBookService } from '../../api/services/searchBookService'
 import { selectBook } from './booksSlice'
 import { setError } from './errorSlice'
 
@@ -25,8 +25,9 @@ export const searchBooks = createAsyncThunk(
 
       return filterExistingBooks(state, data)
     } catch (error) {
-      thunkAPI.dispatch(setError(error))
-      return thunkAPI.rejectWithValue(error)
+      const sanitizedError = error?.message || 'Failed to search books'
+      thunkAPI.dispatch(setError(sanitizedError))
+      return thunkAPI.rejectWithValue(sanitizedError)
     }
   }
 )
@@ -48,6 +49,7 @@ const searchBooksSlice = createSlice({
     builder
       .addCase(searchBooks.pending, (state) => {
         state.isLoading = true
+        state.error = null
       })
       .addCase(searchBooks.fulfilled, (state, action) => {
         state.isLoading = false
