@@ -41,19 +41,20 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
     setIsModalOpen(false)
   }
 
-  useEffect(() => {
-    if (modalBook) {
-      console.log('Current random book:', modalBook)
-    } else {
-      console.log('No book loaded')
-    }
-  }, [modalBook])
+  // useEffect(() => {
+  //   if (randomBooks[currentImageIndex]) {
+  //     console.log('Current random book:', randomBooks[currentImageIndex])
+  //   }
+  //   if ((!currentImageIndex, randomBooks)) {
+  //     console.log('No book loaded')
+  //   }
+  // }, [currentImageIndex, randomBooks])
 
   return (
     <section data-testid={testId}>
       <img
         src={randomBooks[currentImageIndex]?.image || ''}
-        alt="No Book Image"
+        alt={randomBooks[currentImageIndex]?.title || 'No book available'}
         aria-label="Click to see book details"
         onClick={handleOpenBookModal}
         data-testid="random_book_img"

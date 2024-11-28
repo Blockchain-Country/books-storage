@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addBook, selectBook } from '../../../redux/slices/booksSlice'
+import { useDispatch } from 'react-redux'
+import { addBook } from '../../../redux/slices/booksSlice'
 import createBook from '../../../utils/createBook'
 import Button from '../../common/button/Button'
 import Modal from '../../common/modal/Modal'
