@@ -2,7 +2,6 @@ import { screen, fireEvent, within } from '@testing-library/react'
 import { setup } from './setupTests'
 import { createStore } from './redux/store'
 import App from './App'
-process.env.REACT_APP_GOOGLE_BOOKS_API_KEY = 'test_api_key'
 
 //App main component:
 let header,

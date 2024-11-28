@@ -1,7 +1,7 @@
 import { fetchClient } from '../clients/fetchClient'
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes'
-const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
+const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY || 'test_api_key'
 
 export async function searchBookService(query) {
   if (!apiKey) {
