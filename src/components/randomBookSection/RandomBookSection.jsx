@@ -1,27 +1,31 @@
 import { useEffect, useState } from 'react'
-import { randomBookService } from '../../api/services/randomBookService'
-import './RandomBookSection.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { RiLoader2Line } from 'react-icons/ri'
+import {
+  selectRandomBooks,
+  selectIsLoading,
+  getRandomBooks,
+} from '../../redux/slices/randomBooksSlice'
 import RandomBookModal from './randomBookModal/RandomBookModal'
+import './RandomBookSection.css'
 
 const RandomBookSection = ({ 'data-testid': testId }) => {
-  const [randomBooks, setRandomBooks] = useState([])
+  const dispatch = useDispatch()
+  const randomBooks = useSelector(selectRandomBooks)
+  const isLoading = useSelector(selectIsLoading)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalBook, setModalBook] = useState(null)
 
   useEffect(() => {
-    const fetchBookImages = async () => {
-      const books = await randomBookService()
+    console.log('Random books in Redux store:', randomBooks)
+  }, [randomBooks])
 
-      if (books?.length > 0) {
-        setRandomBooks(books)
-        setCurrentImageIndex(0)
-      }
-    }
+  useEffect(() => {
+    dispatch(getRandomBooks())
+  }, [dispatch])
 
-    fetchBookImages()
-
-    // Set up an interval to change the image every 5 seconds
+  useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         randomBooks.length > 0 ? (prevIndex + 1) % randomBooks.length : 0
@@ -41,30 +45,29 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
     setIsModalOpen(false)
   }
 
-  // useEffect(() => {
-  //   if (randomBooks[currentImageIndex]) {
-  //     console.log('Current random book:', randomBooks[currentImageIndex])
-  //   }
-  //   if ((!currentImageIndex, randomBooks)) {
-  //     console.log('No book loaded')
-  //   }
-  // }, [currentImageIndex, randomBooks])
-
   return (
     <section data-testid={testId}>
-      <img
-        src={randomBooks[currentImageIndex]?.image || ''}
-        alt={randomBooks[currentImageIndex]?.title || 'No book available'}
-        aria-label="Click to see book details"
-        onClick={handleOpenBookModal}
-        data-testid="random_book_img"
-      ></img>
-      {isModalOpen && modalBook && (
-        <RandomBookModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          randomBook={modalBook}
-        />
+      {isLoading ? (
+        <RiLoader2Line data-testid="loading_spinner" />
+      ) : (
+        <>
+          {randomBooks.length > 0 && (
+            <img
+              src={randomBooks[currentImageIndex]?.image || ''}
+              alt={randomBooks[currentImageIndex]?.title || 'No book available'}
+              aria-label="Click to see book details"
+              onClick={handleOpenBookModal}
+              data-testid="random_book_img"
+            />
+          )}
+          {isModalOpen && modalBook && (
+            <RandomBookModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              randomBook={modalBook}
+            />
+          )}
+        </>
       )}
     </section>
   )

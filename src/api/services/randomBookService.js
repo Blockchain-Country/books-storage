@@ -39,13 +39,18 @@ export async function randomBookService() {
           })
 
           const vi = bookDetails.volumeInfo || {}
-          const bestImage =
-            vi.imageLinks.extraLarge ||
-            vi.imageLinks.large ||
-            vi.imageLinks.medium ||
-            vi.imageLinks.small ||
-            vi.imageLinks.thumbnail ||
+          let bestImage =
+            vi.imageLinks?.extraLarge ||
+            vi.imageLinks?.large ||
+            vi.imageLinks?.medium ||
+            vi.imageLinks?.small ||
+            vi.imageLinks?.thumbnail ||
             null
+
+          // Force HTTPS for image URLs
+          if (bestImage && bestImage.startsWith('http:')) {
+            bestImage = bestImage.replace('http:', 'https:')
+          }
 
           return {
             title: vi.title,

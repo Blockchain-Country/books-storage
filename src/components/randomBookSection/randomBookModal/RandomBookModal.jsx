@@ -16,7 +16,7 @@ const RandomBookModal = ({ isOpen, onClose, randomBook }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} data-testid="modal_body">
-      {randomBook ? (
+      {randomBook && (
         <div
           key={randomBook.bookId}
           data-testid={`modal_book_item id=${randomBook.bookId}`}
@@ -59,8 +59,6 @@ const RandomBookModal = ({ isOpen, onClose, randomBook }) => {
             data-testid="modal_add_book_btn"
           />
         </div>
-      ) : (
-        <p>No book details available</p>
       )}
     </Modal>
   )
