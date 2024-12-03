@@ -7,9 +7,10 @@ div[data-testid='modal_overlay'] {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  align-items: flex-start;
+  overflow-y: auto;
   z-index: 1000;
+  padding-top: 9rem;
 }
 
 div[data-testid='modal_component'] {
@@ -34,6 +35,6 @@ div[data-testid='modal_header'] {
 @media screen and (max-width: 650px) {
   div[data-testid='modal_component'] {
     width: 95%;
-    height: 95%;
+    height: auto;
   }
 }
