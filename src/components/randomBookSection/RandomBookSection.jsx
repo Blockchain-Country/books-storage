@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RiLoader2Line } from 'react-icons/ri'
+import RandomBookModal from './randomBookModal/RandomBookModal'
 import {
   selectRandomBooks,
   selectIsLoading,
   getRandomBooks,
 } from '../../redux/slices/randomBooksSlice'
-import RandomBookModal from './randomBookModal/RandomBookModal'
 import './RandomBookSection.css'
 
 const RandomBookSection = ({ 'data-testid': testId }) => {
@@ -16,10 +16,6 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalBook, setModalBook] = useState(null)
-
-  useEffect(() => {
-    console.log('Random books in Redux store:', randomBooks)
-  }, [randomBooks])
 
   useEffect(() => {
     dispatch(getRandomBooks())
@@ -64,8 +60,8 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
             <RandomBookModal
               isOpen={isModalOpen}
               onClose={handleCloseModal}
-              randomBook={modalBook}
-            />
+              modalBook={modalBook}
+            ></RandomBookModal>
           )}
         </>
       )}

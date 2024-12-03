@@ -60,7 +60,7 @@ const SearchBookSection = ({ 'data-testid': testId }) => {
         <SearchBookModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          booksFoundList={searchResults}
+          searchResults={searchResults}
         />
       )}
     </section>
