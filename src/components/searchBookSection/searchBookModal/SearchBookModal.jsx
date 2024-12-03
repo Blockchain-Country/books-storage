@@ -25,7 +25,7 @@ const SearchBookModal = ({ isOpen, onClose, searchResults }) => {
     if (filteredSearchResults.length === 0) {
       setTimeout(() => onClose(), 0)
     }
-  }, [filteredSearchResults])
+  }, [onClose, filteredSearchResults])
 
   const handleAddBook = (bookFound) => {
     dispatch(addBook(createBook(bookFound)))
