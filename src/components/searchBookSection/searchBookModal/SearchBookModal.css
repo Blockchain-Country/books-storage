@@ -28,6 +28,11 @@ div[data-testid='book_left_content'] {
   width: 30%;
 }
 
+img[data-testid='modal_book_img'] {
+  min-width: 50%;
+  height: auto;
+}
+
 div[data-testid='book_right_content'] {
   width: 70%;
   display: flex;
