@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RiLoader2Line } from 'react-icons/ri'
 import RandomBookModal from './randomBookModal/RandomBookModal'
+import { selectBook } from '../../redux/slices/booksSlice'
+import { setError } from '../../redux/slices/errorSlice'
 import {
   selectRandomBooks,
   selectIsLoading,
   getRandomBooks,
 } from '../../redux/slices/randomBooksSlice'
 import './RandomBookSection.css'
-import { selectBook } from '../../redux/slices/booksSlice'
-import { setError } from '../../redux/slices/errorSlice'
 
 const RandomBookSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
@@ -50,7 +50,7 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
     setIsModalOpen(true)
 
     if (bookExistence) {
-      dispatch(setError('You already have this book in the list'))
+      dispatch(setError('You already have this book in the list!'))
     }
   }
 

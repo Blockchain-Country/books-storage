@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { setError } from '../../redux/slices/errorSlice'
 import Book from './book/Book'
 import './BookListSection.css'
 import {
@@ -10,7 +11,6 @@ import {
   selectTitleFilter,
   selectAuthorsFilter,
 } from '../../redux/slices/filterSlice'
-import { setError } from '../../redux/slices/errorSlice'
 
 const BookListSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()

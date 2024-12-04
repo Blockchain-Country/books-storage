@@ -18,7 +18,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    // alert(JSON.stringify(credentials))
     setCredentials({ username: '', password: '' })
   }
 

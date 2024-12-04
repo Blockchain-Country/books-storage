@@ -70,13 +70,15 @@ const SearchBookModal = ({ isOpen, onClose, searchResults }) => {
                 <strong>Description:</strong>{' '}
                 {book.description || 'No description available'}
               </p>
+              <div data-testid="modal_add_book_wrapper">
+                <Button
+                  text="Add Book"
+                  onClick={() => handleAddBook(book)}
+                  data-testid="modal_add_book_btn"
+                ></Button>
+              </div>
             </div>
           </div>
-          <Button
-            text="Add Book"
-            onClick={() => handleAddBook(book)}
-            data-testid="modal_add_book_btn"
-          />
         </div>
       ))}
     </Modal>
