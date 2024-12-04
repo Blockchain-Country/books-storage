@@ -19,13 +19,14 @@ const BookListSection = ({ 'data-testid': testId }) => {
   const authorsFilter = useSelector(selectAuthorsFilter)
 
   const handleDeleteBook = (id) => {
-    books.forEach((book) => {
-      if (book.id === id && !book.isFavorite) {
+    const book = books.find((book) => book.id === id)
+    if (book) {
+      if (!book.isFavorite) {
         dispatch(deleteBook(id))
-      } else if (book.isFavorite) {
+      } else {
         dispatch(setError("Can't Delete Favorite Book!"))
       }
-    })
+    }
   }
 
   const toggleFavoriteBook = (id) => {
