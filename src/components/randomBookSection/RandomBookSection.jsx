@@ -8,6 +8,8 @@ import {
   getRandomBooks,
 } from '../../redux/slices/randomBooksSlice'
 import './RandomBookSection.css'
+import { selectBook } from '../../redux/slices/booksSlice'
+import { setError } from '../../redux/slices/errorSlice'
 
 const RandomBookSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
@@ -15,7 +17,9 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
   const isLoading = useSelector(selectIsLoading)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isBookExist, setIsBookExist] = useState(false)
   const [modalBook, setModalBook] = useState(null)
+  const books = useSelector(selectBook)
 
   useEffect(() => {
     dispatch(getRandomBooks())
@@ -32,8 +36,22 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
   }, [randomBooks])
 
   const handleOpenBookModal = () => {
-    setModalBook(randomBooks[currentImageIndex])
+    const selectedBook = randomBooks[currentImageIndex]
+
+    const bookExistence = books.some((existBook) => {
+      return (
+        existBook?.title?.toLowerCase() === selectedBook.title.toLowerCase() &&
+        existBook?.authors?.toLowerCase() === selectedBook.authors.toLowerCase()
+      )
+    })
+
+    setModalBook(selectedBook)
+    setIsBookExist(bookExistence)
     setIsModalOpen(true)
+
+    if (bookExistence) {
+      dispatch(setError('You already have this book in the list'))
+    }
   }
 
   const handleCloseModal = () => {
@@ -61,6 +79,7 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               modalBook={modalBook}
+              isBookExist={isBookExist}
             ></RandomBookModal>
           )}
         </>

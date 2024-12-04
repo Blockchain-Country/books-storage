@@ -1,25 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { addBook, selectBook } from '../../../redux/slices/booksSlice'
+import { useDispatch } from 'react-redux'
+import { addBook } from '../../../redux/slices/booksSlice'
 import createBook from '../../../utils/createBook'
 import Button from '../../common/button/Button'
 import Modal from '../../common/modal/Modal'
 import './RandomBookModal.css'
 
-const RandomBookModal = ({ isOpen, onClose, modalBook }) => {
+const RandomBookModal = ({ isOpen, onClose, modalBook, isBookExist }) => {
   const dispatch = useDispatch()
-  const books = useSelector(selectBook)
 
   const handleAddBook = (book) => {
     dispatch(addBook(createBook(book)))
     onClose()
   }
-
-  const isBookExist = books.some((existBook) => {
-    return (
-      existBook.title.toLowerCase() === modalBook.title.toLowerCase() &&
-      existBook.authors.toLowerCase() === modalBook.authors.toLowerCase()
-    )
-  })
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} data-testid="modal_body">
