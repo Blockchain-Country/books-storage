@@ -50,19 +50,21 @@ const RandomBookModal = ({ isOpen, onClose, modalBook, isBookExist }) => {
                 <strong>Description:</strong>{' '}
                 {modalBook.description || 'No description available'}
               </p>
+              {isBookExist ? (
+                <div>
+                  <p>You already have this book in the list!</p>
+                </div>
+              ) : (
+                <div data-testid="modal_add_book_wrapper">
+                  <Button
+                    text="Add Book"
+                    onClick={() => handleAddBook(modalBook)}
+                    data-testid="modal_add_book_btn"
+                  ></Button>
+                </div>
+              )}
             </div>
           </div>
-          {isBookExist ? (
-            <div>
-              <p>You already have this book in the list</p>
-            </div>
-          ) : (
-            <Button
-              text="Add Book"
-              onClick={() => handleAddBook(modalBook)}
-              data-testid="modal_add_book_btn"
-            />
-          )}
         </div>
       )}
     </Modal>

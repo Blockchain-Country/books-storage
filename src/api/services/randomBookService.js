@@ -14,7 +14,6 @@ export async function randomBookService() {
 
   const cacheKey = 'bestsellers'
   if (cache[cacheKey]) {
-    console.log('Using cached data')
     return cache[cacheKey]
   }
 
@@ -30,8 +29,6 @@ export async function randomBookService() {
       const enhancedBooks = await Promise.all(
         data.items.map(async (item) => {
           const selfLink = item.selfLink
-
-          console.log('Fetching book details from selfLink:', selfLink)
 
           const bookDetails = await fetchClient(selfLink, {
             method: 'GET',

@@ -33,12 +33,17 @@ a[data-testid='header_login_btn'] {
   cursor: pointer;
   color: #fff;
   display: inline-block;
-  transition: transform 0.3s linear;
+  transition: transform 0.1s linear;
 }
 
 a[data-testid='header_login_btn']:hover {
   text-shadow: 0 0 10px #ffffff;
-  transform: scale(1.1);
+  transform: scale(1.15);
+}
+
+a[data-testid='header_login_btn']:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 650px) {

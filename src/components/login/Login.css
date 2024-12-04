@@ -10,11 +10,11 @@ a[data-testid='login_back_btn'] {
   font-size: 2.5rem;
   color: #fff;
   display: inline-block;
-  transition: transform 0.3s linear;
+  transition: transform 0.1s linear;
 }
 
 a[data-testid='login_back_btn']:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 form[data-testid='login_form'] {
