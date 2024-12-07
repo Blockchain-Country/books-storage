@@ -1,24 +1,54 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoArrowBackCircleOutline } from 'react-icons/io5'
-import Button from '../common/button/Button'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import Input from '../../common/input/Input'
+import Button from '../../common/button/Button'
+import { auth } from '../../../services/firebaseConfig'
+import { setError } from '../../../redux/slices/errorSlice'
 import './Login.css'
-import Input from '../common/input/Input'
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   })
+
+  useEffect(() => {
+    // Set up a listener to check if a user is authenticated
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate('/')
+      }
+    })
+    // Cleanup the listener on component unmount
+    return () => unsubscribe()
+  }, [navigate])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setCredentials((prevState) => ({ ...prevState, [name]: value }))
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    setCredentials({ username: '', password: '' })
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        credentials.username,
+        credentials.password
+      )
+      console.log('User logged in!')
+      dispatch(setError('User logged in!'))
+      setCredentials({ username: '', password: '' })
+      navigate('/')
+    } catch (error) {
+      console.error(error.message)
+      dispatch(setError('Incorrect username or password!'))
+    }
   }
 
   return (
@@ -52,10 +82,10 @@ const Login = () => {
         </div>
         <Button
           text="Login"
-          className="form-login-btn"
           type="submit"
           data-testid="login_form_submit_btn"
-        />
+        ></Button>
+        <Link to="/signup">Sign Up</Link>
       </form>
     </div>
   )

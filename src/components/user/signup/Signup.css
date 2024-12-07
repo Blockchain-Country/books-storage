@@ -1,0 +1,39 @@
+div[data-testid='signup_page'] {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+a[data-testid='signup_back_btn'] {
+  font-size: 2.5rem;
+  color: #fff;
+  display: inline-block;
+  transition: transform 0.1s linear;
+}
+
+a[data-testid='signup_back_btn']:hover {
+  transform: scale(1.15);
+}
+
+form[data-testid='signup_form'] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40rem;
+  padding: 3rem;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+div[data-testid='signup_form_username_wrapper'],
+div[data-testid='signup_form_password_wrapper'],
+div[data-testid='signup_form_confirm_password_wrapper'] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 2rem;
+}
