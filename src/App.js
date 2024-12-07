@@ -4,7 +4,8 @@ import ManualAddBookSection from './components/manualAddBookSection/ManualAddBoo
 import SearchBookSection from './components/searchBookSection/SearchBookSection'
 import BookListSection from './components/BookListSection/BookListSection'
 import Header from './components/header/Header'
-import Login from './components/login/Login'
+import Login from './components/user/login/Login'
+import Signup from './components/user/signup/Signup'
 import Error from './components/error/Error'
 import './App.css'
 import RandomBookSection from './components/randomBookSection/RandomBookSection'
@@ -38,6 +39,7 @@ function App() {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </main>
