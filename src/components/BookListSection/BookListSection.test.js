@@ -1,25 +1,39 @@
-import { within, fireEvent } from '@testing-library/react'
+import { within, fireEvent, screen, act } from '@testing-library/react'
 import { v4 as uuidv4 } from 'uuid'
 import { setup } from '../../setupTests'
+import store from '../../redux/store'
 import BookListSection from './BookListSection'
 import { createStore } from '../../redux/store'
+import App from '../../App'
 
+let bookListComponent, noBooksMessage
 const bookTitleName = 'Test Book Title'
 const bookAuthorName = 'Test Book Author'
 const bookId = uuidv4()
 
 describe('BookList Component Tests', () => {
-  test('Should display "No books in my list..." when books list is empty', () => {
-    // Create the mocked store with no books in the preloaded state
-    const mockedStore = createStore({
-      books: [],
+  beforeEach(async () => {
+    await act(async () => {
+      setup(App, store)
     })
 
-    // Render the BookList component with the mock store
-    const { container } = setup(BookListSection, mockedStore)
+    // Locate BookListSection elements
+    bookListComponent = screen.getByTestId('bookList_section')
+    noBooksMessage = screen.queryByTestId('bookList_emptyMsg')
+  })
 
-    const noBooksSign = within(container).getByTestId('bookList_emptyMsg')
-    expect(noBooksSign).toBeInTheDocument()
+  afterEach(() => {
+    document.body.innerHTML = ''
+  })
+
+  test('Should render the BookListSection component', () => {
+    expect(bookListComponent).toBeInTheDocument()
+    expect(screen.getByText('My Book List')).toBeInTheDocument()
+  })
+
+  test('Should display "No books in my list..." when books list is empty', () => {
+    expect(noBooksMessage).toBeInTheDocument()
+    expect(noBooksMessage.textContent).toBe('No books in my list...')
   })
 
   test('Should display a book in the list when there is one book', () => {
@@ -58,7 +72,7 @@ describe('BookList Component Tests', () => {
     expect(noBooksSign).toBeInTheDocument()
   })
 
-  test('Should not able to delete Favorite book', () => {
+  test('Should toggle favorite and delete functionality', () => {
     const mockedStore = createStore({
       books: [
         {
@@ -72,41 +86,32 @@ describe('BookList Component Tests', () => {
 
     const { container } = setup(BookListSection, mockedStore)
 
-    const bookItems = within(container).getByTestId(
-      `bookList_item id=${bookId}`
-    )
-    let isFavoriteFalse = within(bookItems).getByTestId(
+    const bookItem = within(container).getByTestId(`bookList_item id=${bookId}`)
+    const favoriteToggle = within(bookItem).getByTestId(
       'book_favorite_toggle_false'
     )
-    expect(isFavoriteFalse).toBeInTheDocument()
 
-    fireEvent.click(isFavoriteFalse)
-    let isFavoriteTrue = within(bookItems).getByTestId(
-      'book_favorite_toggle_true'
-    )
-    expect(isFavoriteTrue).toBeInTheDocument()
+    // Toggle favorite on
+    fireEvent.click(favoriteToggle)
+    expect(
+      within(bookItem).getByTestId('book_favorite_toggle_true')
+    ).toBeInTheDocument()
 
-    //try to delete toggled book:
-    let deleteBookBtn = within(bookItems).getByTestId('delete_book_btn')
+    // Try deleting the book
+    const deleteBookBtn = within(bookItem).getByTestId('delete_book_btn')
     fireEvent.click(deleteBookBtn)
-    expect(bookItems).toBeInTheDocument()
+    expect(bookItem).toBeInTheDocument()
 
-    //untoggle favorite:
-    isFavoriteTrue = within(bookItems).getByTestId('book_favorite_toggle_true')
-    fireEvent.click(isFavoriteTrue)
-    isFavoriteFalse = within(bookItems).getByTestId(
-      'book_favorite_toggle_false'
-    )
-    expect(isFavoriteFalse).toBeInTheDocument()
+    // Untoggle favorite
+    fireEvent.click(within(bookItem).getByTestId('book_favorite_toggle_true'))
+    expect(
+      within(bookItem).getByTestId('book_favorite_toggle_false')
+    ).toBeInTheDocument()
 
-    //delete book:
-    deleteBookBtn = within(bookItems).getByTestId('delete_book_btn')
+    // Delete book
     fireEvent.click(deleteBookBtn)
-
-    //assert if the book deleted from the DOM:
-    const deletedBookItem = within(container).queryByTestId(
-      `bookList_item id=${bookId}`
-    )
-    expect(deletedBookItem).toBeNull()
+    expect(
+      within(container).queryByTestId(`bookList_item id=${bookId}`)
+    ).toBeNull()
   })
 })

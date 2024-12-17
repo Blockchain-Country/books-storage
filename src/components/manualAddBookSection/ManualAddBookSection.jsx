@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addBook, selectBook } from '../../redux/slices/booksSlice'
+import { selectBook, syncAddBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
 import './ManualAddBookSection.css'
 import { setError } from '../../redux/slices/errorSlice'
@@ -25,7 +25,7 @@ const ManualAddBookSection = ({ 'data-testid': testId }) => {
     e.preventDefault()
     if (title.trim() && authors.trim()) {
       if (!filterExistingBooks()) {
-        dispatch(addBook(createBook({ title, authors })))
+        dispatch(syncAddBook(createBook({ title, authors })))
       } else {
         dispatch(setError('The book is already in the List!'))
       }

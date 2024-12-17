@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, act } from '@testing-library/react'
 import { setup } from '../../setupTests'
 import store from '../../redux/store'
 import App from '../../App'
@@ -9,14 +9,20 @@ const bookAuthorName = 'Test Book Author'
 let titleInput, authorsInput, submitBookBtn, bookListComponent
 
 describe('ManualAddBookSection Component Tests', () => {
-  beforeEach(() => {
-    setup(App, store)
+  beforeEach(async () => {
+    await act(async () => {
+      setup(App, store)
+    })
 
     // ManualAddBookSection elements:
     titleInput = screen.getByTestId('manualAddBook_input_title')
     authorsInput = screen.getByTestId('manualAddBook_input_author')
     submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
     bookListComponent = screen.getByTestId('bookList_section')
+  })
+
+  afterEach(() => {
+    document.body.innerHTML = ''
   })
 
   test('Should render Title input', () => {

@@ -1,16 +1,30 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { onAuthStateChanged } from 'firebase/auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import FilterSection from './components/filterSection/FilterSection'
 import ManualAddBookSection from './components/manualAddBookSection/ManualAddBookSection'
 import SearchBookSection from './components/searchBookSection/SearchBookSection'
+import RandomBookSection from './components/randomBookSection/RandomBookSection'
 import BookListSection from './components/BookListSection/BookListSection'
 import Header from './components/header/Header'
 import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
 import Error from './components/error/Error'
+import { syncLoadBook } from './redux/slices/booksSlice'
+import { auth } from './services/firebaseConfig'
 import './App.css'
-import RandomBookSection from './components/randomBookSection/RandomBookSection'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      dispatch(syncLoadBook())
+    })
+    return () => unsubscribe()
+  }, [dispatch])
+
   return (
     <BrowserRouter
       future={{

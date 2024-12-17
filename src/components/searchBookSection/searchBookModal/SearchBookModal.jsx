@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addBook, selectBook } from '../../../redux/slices/booksSlice'
+import { selectBook, syncAddBook } from '../../../redux/slices/booksSlice'
 import createBook from '../../../utils/createBook'
 import Button from '../../common/button/Button'
 import Modal from '../../common/modal/Modal'
@@ -28,7 +28,7 @@ const SearchBookModal = ({ isOpen, onClose, searchResults }) => {
   }, [onClose, filteredSearchResults])
 
   const handleAddBook = (bookFound) => {
-    dispatch(addBook(createBook(bookFound)))
+    dispatch(syncAddBook(createBook(bookFound)))
   }
 
   if (!searchResults || searchResults.length === 0)
@@ -61,14 +61,13 @@ const SearchBookModal = ({ isOpen, onClose, searchResults }) => {
                     ? 'Authors:'
                     : 'Author:'}
                 </strong>{' '}
-                {book.authors || 'Unknown Authors'}
+                {book.authors}
               </p>
               <p>
-                <strong>Published Year:</strong> {book.publishedDate || 'N/A'}
+                <strong>Published Year:</strong> {book.publishedDate}
               </p>
               <p>
-                <strong>Description:</strong>{' '}
-                {book.description || 'No description available'}
+                <strong>Description:</strong> {book.description}
               </p>
               <div data-testid="modal_add_book_wrapper">
                 <Button
