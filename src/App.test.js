@@ -1,4 +1,4 @@
-import { screen, fireEvent, within } from '@testing-library/react'
+import { screen, fireEvent, within, act } from '@testing-library/react'
 import { setup } from './setupTests'
 import { createStore } from './redux/store'
 import App from './App'
@@ -31,17 +31,21 @@ function submitNewBook(bookTitle, bookAuthor) {
 }
 
 describe('App Component Tests', () => {
-  //App main component elements:
-
-  beforeEach(() => {
+  beforeEach(async () => {
     resetStore()
-    setup(App, store)
+    await act(async () => {
+      setup(App, store)
+    })
 
     //main components elements:
     header = screen.getByTestId('header_container')
     manualAddBookSection_component = screen.getByTestId('manualAddBook_section')
     filterSection_component = screen.getByTestId('filters_section')
     bookListSection_component = screen.getByTestId('bookList_section')
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   test('Should render the Header to be in the DOM and should contain text "My Books Storage"', async () => {
@@ -63,9 +67,11 @@ describe('App Component Tests', () => {
 })
 
 describe('App functional Tests', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     resetStore()
-    setup(App, store)
+    await act(async () => {
+      setup(App, store)
+    })
 
     // ManualAddBookSection form elements:
     titleInput = screen.getByTestId('manualAddBook_input_title')
@@ -76,6 +82,10 @@ describe('App functional Tests', () => {
     filterByTitleInput = screen.getByTestId('filter_title_input')
     filterbyAuthorsInput = screen.getByTestId('filter_author_input')
     clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   test('Should Submit a new book to the BookListSection', () => {

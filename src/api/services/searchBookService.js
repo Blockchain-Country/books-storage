@@ -26,9 +26,9 @@ export async function searchBookService(query) {
         title: item.volumeInfo.title,
         image: item.volumeInfo.imageLinks?.thumbnail,
         authors: item.volumeInfo.authors?.join(', ') || 'Unknown Author',
-        publishedDate: item.volumeInfo.publishedDate,
+        publishedDate: item.volumeInfo.publishedDate || 'N/A',
         language: item.volumeInfo.language,
-        description: item.volumeInfo.description,
+        description: item.volumeInfo.description || 'No description available',
         bookId: item.id,
       }))
     } else {

@@ -1,11 +1,13 @@
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setError } from '../../redux/slices/errorSlice'
 import Book from './book/Book'
 import './BookListSection.css'
 import {
   selectBook,
-  deleteBook,
-  toggleFavorite,
+  syncLoadBook,
+  syncDeleteBook,
+  syncToggleFavorite,
 } from '../../redux/slices/booksSlice'
 import {
   selectTitleFilter,
@@ -18,11 +20,17 @@ const BookListSection = ({ 'data-testid': testId }) => {
   const titleFilter = useSelector(selectTitleFilter)
   const authorsFilter = useSelector(selectAuthorsFilter)
 
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'test') {
+      dispatch(syncLoadBook())
+    }
+  }, [dispatch])
+
   const handleDeleteBook = (id) => {
     const book = books.find((book) => book.id === id)
     if (book) {
       if (!book.isFavorite) {
-        dispatch(deleteBook(id))
+        dispatch(syncDeleteBook(id))
       } else {
         dispatch(setError("Can't Delete Favorite Book!"))
       }
@@ -30,7 +38,7 @@ const BookListSection = ({ 'data-testid': testId }) => {
   }
 
   const toggleFavoriteBook = (id) => {
-    dispatch(toggleFavorite(id))
+    dispatch(syncToggleFavorite(id))
   }
 
   const filteredBooksArr = books.filter((book) => {

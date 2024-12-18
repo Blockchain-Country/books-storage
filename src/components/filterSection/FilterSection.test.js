@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, act } from '@testing-library/react'
 import { setup } from '../../setupTests'
 import store from '../../redux/store'
 import App from '../../App'
@@ -9,13 +9,19 @@ const authorsFilterStr = 'authors'
 let filterByTitleInput, filterbyAuthorsInput, clearAllFiltersBtn
 
 describe('FilterSection Component Tests', () => {
-  beforeEach(() => {
-    setup(App, store)
+  beforeEach(async () => {
+    await act(async () => {
+      setup(App, store)
+    })
 
     // FilterSection elements:
     filterByTitleInput = screen.getByTestId('filter_title_input')
     filterbyAuthorsInput = screen.getByTestId('filter_author_input')
     clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
+  })
+
+  afterEach(() => {
+    document.body.innerHTML = ''
   })
 
   test('Should render TitleFilter input', () => {

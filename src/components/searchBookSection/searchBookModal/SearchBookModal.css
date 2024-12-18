@@ -23,14 +23,15 @@ div[data-testid='modal_book_content'] {
 
 div[data-testid='book_left_content'] {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 30%;
 }
 
 img[data-testid='modal_book_img'] {
-  min-width: 50%;
-  height: 100%;
+  min-width: 70%;
+  max-height: 100%;
+  padding-top: 3rem;
 }
 
 div[data-testid='book_right_content'] {
