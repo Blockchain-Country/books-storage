@@ -1,11 +1,12 @@
 [data-testid='app_main'] {
   display: flex;
   justify-content: center;
-  margin: auto;
-  width: 80%;
-  padding-top: 9rem;
-  gap: 2rem;
   height: 100%;
+  width: 80%;
+  gap: 2rem;
+  padding-top: 9rem;
+  padding-bottom: 2rem;
+  margin: auto;
   font-size: 1.5rem;
 }
 
