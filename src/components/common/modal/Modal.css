@@ -34,7 +34,7 @@ div[data-testid='modal_header'] {
   border-bottom: 1px solid #ddd;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 768px) {
   div[data-testid='modal_component'] {
     width: 95%;
     height: auto;

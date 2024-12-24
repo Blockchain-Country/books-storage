@@ -6,7 +6,7 @@ import FilterSection from './components/filterSection/FilterSection'
 import ManualAddBookSection from './components/manualAddBookSection/ManualAddBookSection'
 import SearchBookSection from './components/searchBookSection/SearchBookSection'
 import RandomBookSection from './components/randomBookSection/RandomBookSection'
-import BookListSection from './components/BookListSection/BookListSection'
+import BookListSection from './components/bookListSection/BookListSection'
 import Header from './components/header/Header'
 import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
@@ -14,6 +14,7 @@ import Error from './components/error/Error'
 import { syncLoadBook } from './redux/slices/booksSlice'
 import { auth } from './api/services/firebaseConfig'
 import './App.css'
+import Footer from './components/footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function App() {
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </main>
+        <Footer />
         <Error />
       </div>
     </BrowserRouter>
