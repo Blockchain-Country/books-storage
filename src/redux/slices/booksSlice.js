@@ -7,7 +7,7 @@ import {
   getDocs,
   setDoc,
 } from 'firebase/firestore'
-import { auth, db } from '../../services/firebaseConfig'
+import { auth, db } from '../../api/services/firebaseConfig'
 import { setError } from './errorSlice'
 
 const initialState = []

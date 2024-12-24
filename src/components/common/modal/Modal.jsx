@@ -8,7 +8,11 @@ const Modal = ({ isOpen, onClose, 'data-testid': testId, children }) => {
   return (
     <FocusLock>
       <div data-testid="modal_overlay" onClick={onClose}>
-        <div open={isOpen} data-testid="modal_component">
+        <div
+          open={isOpen}
+          onClick={(e) => e.stopPropagation()}
+          data-testid="modal_component"
+        >
           <div data-testid="modal_header">
             <Button
               text="Close"

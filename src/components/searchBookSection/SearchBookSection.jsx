@@ -53,6 +53,7 @@ const SearchBookSection = ({ 'data-testid': testId }) => {
           text="Search"
           type="submit"
           disabled={isLoading}
+          isLoading={isLoading}
           data-testid="search_form_submit_btn"
         ></Button>
       </form>

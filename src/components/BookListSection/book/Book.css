@@ -5,20 +5,22 @@ li[data-testid^='bookList_item'] {
   gap: 1rem;
   align-items: center;
   padding: 0.5rem 1rem;
+  cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
+  transition: transform 0.3s, background-color 0.3s ease;
 }
 
 li[data-testid*='bookList_item']:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-li[data-testid*='bookList_item']:hover {
-  background-color: #bcd0fcfe;
+li[data-testid^='bookList_item']:hover {
+  background-color: #eaf3ff;
+  transform: scale(1.005);
 }
 
 /* ----- */
-
 span[data-testid='book_index'] {
   text-align: center;
   min-width: 2rem;
@@ -35,8 +37,7 @@ div[data-testid='book_title_and_author_wrapper'] {
   overflow: hidden;
 }
 
-/* -----title */
-
+/* Title */
 div[data-testid='book_title_wrapper'] {
   white-space: nowrap;
   overflow: hidden;
@@ -54,8 +55,7 @@ span[data-testid='book_title']::after {
   content: '"';
 }
 
-/* -----author */
-
+/* Author */
 div[data-testid='book_author_wrapper'] {
   white-space: nowrap;
   overflow: hidden;
@@ -65,31 +65,49 @@ div[data-testid='book_author_wrapper'] {
 span[data-testid='book_author'] {
   padding-left: 0.5rem;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
-/* -----action buttons */
+span[data-testid='book_author']:hover {
+  color: #007bff;
+}
 
+/* Action Buttons */
 div[data-testid='book_actions'] {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+button[data-testid^='book_favorite_toggle_'] {
+  min-width: 0;
+  padding: 0.5rem;
+  border: 1px solid #fca510;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button[data-testid='book_favorite_toggle_false']:hover,
+button[data-testid='book_favorite_toggle_true']:hover {
+  background-color: #f6dbabfd;
+}
+
 [data-testid='book_favorite_icon'],
 [data-testid='book_nonFavorite_icon'] {
   width: 2.5rem;
   height: 2.5rem;
-  margin: 0rem 1rem;
   cursor: pointer;
-  transition: color 0.3s, transform 0.3s ease-in-out;
   color: #fca510;
+  transition: transform 0.2s, color 0.2s ease;
 }
 
 [data-testid='book_favorite_icon']:hover,
 [data-testid='book_nonFavorite_icon']:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
+  color: #e69303;
 }
 
+/* Delete Button */
 button[data-testid='delete_book_btn'] {
   margin: 0 0.5rem;
   background-color: #fff;

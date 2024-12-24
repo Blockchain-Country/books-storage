@@ -5,9 +5,11 @@ const Button = ({
   text = 'Submit',
   type = 'button',
   onClick = () => {},
-  className = '',
   disabled = false,
+  isLoading = false,
+  children,
   'data-testid': testId,
+  className = '',
 }) => {
   return (
     <button
@@ -16,9 +18,15 @@ const Button = ({
       className="componentButton"
       data-testid={testId}
       disabled={disabled}
-      aria-busy={disabled}
+      aria-busy={isLoading}
     >
-      {disabled ? <RiLoader2Line data-testid="search_spinner" /> : text}
+      {isLoading ? (
+        <RiLoader2Line data-testid="search_spinner" />
+      ) : children ? (
+        children
+      ) : (
+        <span data-testid="button_text">{text}</span>
+      )}
     </button>
   )
 }

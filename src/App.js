@@ -12,7 +12,7 @@ import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
 import Error from './components/error/Error'
 import { syncLoadBook } from './redux/slices/booksSlice'
-import { auth } from './services/firebaseConfig'
+import { auth } from './api/services/firebaseConfig'
 import './App.css'
 
 function App() {
