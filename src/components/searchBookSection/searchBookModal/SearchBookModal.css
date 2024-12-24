@@ -2,6 +2,7 @@ div[data-testid='modal_body'] {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  padding-bottom: 5rem;
   overflow-y: auto;
   gap: 1rem;
 }

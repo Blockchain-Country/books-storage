@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth'
 import Input from '../../common/input/Input'
 import Button from '../../common/button/Button'
-import { auth } from '../../../services/firebaseConfig'
+import { auth } from '../../../api/services/firebaseConfig'
 import { setError } from '../../../redux/slices/errorSlice'
 import './Signup.css'
 

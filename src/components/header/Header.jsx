@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
-import { auth } from '../../services/firebaseConfig'
+import { auth } from '../../api/services/firebaseConfig'
 
 const Header = () => {
   const location = useLocation()

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setError } from '../../redux/slices/errorSlice'
 import Book from './book/Book'
@@ -13,12 +13,15 @@ import {
   selectTitleFilter,
   selectAuthorsFilter,
 } from '../../redux/slices/filterSlice'
+import BookListModal from './bookListModal/BookListModal'
 
 const BookListSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const books = useSelector(selectBook)
   const titleFilter = useSelector(selectTitleFilter)
   const authorsFilter = useSelector(selectAuthorsFilter)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalBook, setModalBook] = useState(null)
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'test') {
@@ -26,11 +29,22 @@ const BookListSection = ({ 'data-testid': testId }) => {
     }
   }, [dispatch])
 
+  useEffect(() => {
+    if (isModalOpen && modalBook) {
+      const updatedBookState = books.find((book) => book.id === modalBook.id)
+      if (updatedBookState) {
+        setModalBook(updatedBookState)
+      }
+    }
+  }, [books, isModalOpen, modalBook])
+
   const handleDeleteBook = (id) => {
     const book = books.find((book) => book.id === id)
     if (book) {
       if (!book.isFavorite) {
         dispatch(syncDeleteBook(id))
+        setIsModalOpen(false)
+        setModalBook(null)
       } else {
         dispatch(setError("Can't Delete Favorite Book!"))
       }
@@ -39,6 +53,19 @@ const BookListSection = ({ 'data-testid': testId }) => {
 
   const toggleFavoriteBook = (id) => {
     dispatch(syncToggleFavorite(id))
+  }
+
+  const handleOpenBookModal = (id) => {
+    const book = books.find((book) => book.id === id)
+    if (book) {
+      setIsModalOpen(true)
+      setModalBook(book)
+    }
+  }
+
+  const handleCloseBookModal = () => {
+    setIsModalOpen(false)
+    setModalBook(null)
   }
 
   const filteredBooksArr = books.filter((book) => {
@@ -81,11 +108,21 @@ const BookListSection = ({ 'data-testid': testId }) => {
               bookAuthor={highlightFilterMatch(book.authors, authorsFilter)}
               onHandleDeleteBook={handleDeleteBook}
               onToggleFavoriteBook={toggleFavoriteBook}
+              onClick={() => handleOpenBookModal(book.id)}
               data-testid={`bookList_item id=${book.id}`}
             />
           ))
         )}
       </ul>
+      {isModalOpen && (
+        <BookListModal
+          isOpen={isModalOpen}
+          onClose={handleCloseBookModal}
+          modalBook={modalBook}
+          onHandleDeleteBook={handleDeleteBook}
+          onToggleFavoriteBook={toggleFavoriteBook}
+        ></BookListModal>
+      )}
     </section>
   )
 }

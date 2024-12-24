@@ -20,6 +20,14 @@
   background-color: #0056b3;
 }
 
+span[data-testid='button_text'] {
+  transition: transform 0.2s ease;
+}
+
+span[data-testid='button_text']:hover {
+  transform: scale(1.05);
+}
+
 .componentButton:active {
   background-color: #016adb;
   transform: scale(0.95);
@@ -27,8 +35,9 @@
 }
 
 .componentButton:disabled {
-  background-color: #0056b3;
-  color: darkgray;
+  background-color: darkgray;
+  border: 1px solid darkgray;
+  color: #fff;
   cursor: not-allowed;
 }
 
