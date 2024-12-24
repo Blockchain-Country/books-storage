@@ -56,13 +56,16 @@ div[data-testid='bookListModal_add_book_wrapper'] {
 div[data-testid='bookListModal_actions_wrapper'] {
   display: flex;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 0.5rem;
 }
 
 /* Favorite Toggle Button */
 button[data-testid^='bookListModal_favorite_toggle_'] {
   min-width: 0;
-  padding: 0.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  padding: 0;
+  margin: 0;
   border: 1px solid #fca510;
   background-color: #fff;
   /* transition: background-color 0.2s, transform 0.3s ease; */
@@ -76,8 +79,8 @@ button[data-testid^='bookListModal_favorite_toggle_true']:hover {
 /* Favorite Icon */
 [data-testid='bookListModal_favorite_icon'],
 [data-testid='bookListModal_nonFavorite_icon'] {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   transition: transform 0.2s, color 0.3s, ease;
   color: #fca510;

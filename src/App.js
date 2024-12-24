@@ -14,6 +14,7 @@ import Error from './components/error/Error'
 import { syncLoadBook } from './redux/slices/booksSlice'
 import { auth } from './api/services/firebaseConfig'
 import './App.css'
+import Footer from './components/footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function App() {
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </main>
+        <Footer />
         <Error />
       </div>
     </BrowserRouter>

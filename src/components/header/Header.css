@@ -7,11 +7,11 @@ header[data-testid='header_container'] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
-  background-color: #0a1a2d;
   padding: 2rem 3rem;
   z-index: 1000;
-  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  background-color: #0a1a2d;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 span[data-testid='header_logo'] {
