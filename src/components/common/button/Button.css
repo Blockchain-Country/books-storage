@@ -1,4 +1,4 @@
-.componentButton {
+button[data-testid^='componentButton'] {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,9 +15,22 @@
     box-shadow 0.1s ease;
 }
 
-.componentButton:hover {
+button[data-testid^='componentButton']:hover {
   transform: scale(1.03);
   background-color: #0056b3;
+}
+
+button[data-testid^='componentButton']:active {
+  background-color: #016adb;
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button[data-testid^='componentButton']:disabled {
+  background-color: darkgray;
+  border: 1px solid darkgray;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 span[data-testid='button_text'] {
@@ -26,19 +39,6 @@ span[data-testid='button_text'] {
 
 span[data-testid='button_text']:hover {
   transform: scale(1.05);
-}
-
-.componentButton:active {
-  background-color: #016adb;
-  transform: scale(0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.componentButton:disabled {
-  background-color: darkgray;
-  border: 1px solid darkgray;
-  color: #fff;
-  cursor: not-allowed;
 }
 
 [data-testid='search_spinner'] {

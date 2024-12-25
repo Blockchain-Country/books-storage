@@ -1,4 +1,4 @@
-.component_input {
+input[data-testid^='component_input'] {
   width: 90%;
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;

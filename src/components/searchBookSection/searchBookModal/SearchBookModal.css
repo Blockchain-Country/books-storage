@@ -51,6 +51,6 @@ div[data-testid='modal_add_book_wrapper'] {
   justify-content: flex-start;
 }
 
-button[data-testid='modal_add_book_btn'] {
+button[data-testid*='modal_add_book_btn'] {
   margin: 0;
 }

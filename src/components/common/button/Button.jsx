@@ -9,14 +9,12 @@ const Button = ({
   isLoading = false,
   children,
   'data-testid': testId,
-  className = '',
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      className="componentButton"
-      data-testid={testId}
+      data-testid={`componentButton ${testId}`}
       disabled={disabled}
       aria-busy={isLoading}
     >

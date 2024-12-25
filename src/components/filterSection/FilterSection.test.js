@@ -15,9 +15,15 @@ describe('FilterSection Component Tests', () => {
     })
 
     // FilterSection elements:
-    filterByTitleInput = screen.getByTestId('filter_title_input')
-    filterbyAuthorsInput = screen.getByTestId('filter_author_input')
-    clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
+    filterByTitleInput = screen.getByTestId((id) =>
+      id.includes('filter_title_input')
+    )
+    filterbyAuthorsInput = screen.getByTestId((id) =>
+      id.includes('filter_author_input')
+    )
+    clearAllFiltersBtn = screen.getByTestId((id) =>
+      id.includes('filter_clear_btn')
+    )
   })
 
   afterEach(() => {

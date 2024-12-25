@@ -60,7 +60,7 @@ div[data-testid='bookListModal_actions_wrapper'] {
 }
 
 /* Favorite Toggle Button */
-button[data-testid^='bookListModal_favorite_toggle_'] {
+button[data-testid*='bookListModal_favorite_toggle_'] {
   min-width: 0;
   height: 3.5rem;
   width: 3.5rem;
@@ -68,11 +68,10 @@ button[data-testid^='bookListModal_favorite_toggle_'] {
   margin: 0;
   border: 1px solid #fca510;
   background-color: #fff;
-  /* transition: background-color 0.2s, transform 0.3s ease; */
 }
 
-button[data-testid^='bookListModal_favorite_toggle_false']:hover,
-button[data-testid^='bookListModal_favorite_toggle_true']:hover {
+button[data-testid*='bookListModal_favorite_toggle_false']:hover,
+button[data-testid*='bookListModal_favorite_toggle_true']:hover {
   background-color: #f6dbab;
 }
 
@@ -92,18 +91,18 @@ button[data-testid^='bookListModal_favorite_toggle_true']:hover {
   color: #e69303;
 }
 
-button[data-testid='bookListModal_delete_btn'] {
+button[data-testid*='bookListModal_delete_btn'] {
   margin: 0;
   background-color: #fff;
   color: red;
   border: 1px solid red;
 }
 
-button[data-testid='bookListModal_delete_btn']:hover {
+button[data-testid*='bookListModal_delete_btn']:hover {
   background-color: rgb(255, 204, 204);
 }
 
-button[data-testid='bookListModal_delete_btn']:disabled {
+button[data-testid*='bookListModal_delete_btn']:disabled {
   border: 1px solid darkgray;
   color: fff;
   background-color: darkgray;
