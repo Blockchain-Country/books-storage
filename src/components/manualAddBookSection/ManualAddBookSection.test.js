@@ -15,9 +15,15 @@ describe('ManualAddBookSection Component Tests', () => {
     })
 
     // ManualAddBookSection elements:
-    titleInput = screen.getByTestId('manualAddBook_input_title')
-    authorsInput = screen.getByTestId('manualAddBook_input_author')
-    submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
+    titleInput = screen.getByTestId((id) =>
+      id.includes('manualAddBook_input_title')
+    )
+    authorsInput = screen.getByTestId((id) =>
+      id.includes('manualAddBook_input_author')
+    )
+    submitBookBtn = screen.getByTestId((id) =>
+      id.includes('manualAddBook_submit_btn')
+    )
     bookListComponent = screen.getByTestId('bookList_section')
   })
 

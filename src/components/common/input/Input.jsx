@@ -18,8 +18,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
-        className="component_input"
-        data-testid={testId}
+        data-testid={`component_input ${testId}`}
       ></input>
     </>
   )

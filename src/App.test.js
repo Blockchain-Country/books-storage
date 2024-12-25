@@ -74,14 +74,26 @@ describe('App functional Tests', () => {
     })
 
     // ManualAddBookSection form elements:
-    titleInput = screen.getByTestId('manualAddBook_input_title')
-    authorsInput = screen.getByTestId('manualAddBook_input_author')
-    submitBookBtn = screen.getByTestId('manualAddBook_submit_btn')
+    titleInput = screen.getByTestId((id) =>
+      id.includes('manualAddBook_input_title')
+    )
+    authorsInput = screen.getByTestId((id) =>
+      id.includes('manualAddBook_input_author')
+    )
+    submitBookBtn = screen.getByTestId((id) =>
+      id.includes('manualAddBook_submit_btn')
+    )
     bookListSection_component = screen.getByTestId('bookList_section')
     // FilterSection elements:
-    filterByTitleInput = screen.getByTestId('filter_title_input')
-    filterbyAuthorsInput = screen.getByTestId('filter_author_input')
-    clearAllFiltersBtn = screen.getByTestId('filter_clear_btn')
+    filterByTitleInput = screen.getByTestId((id) =>
+      id.includes('filter_title_input')
+    )
+    filterbyAuthorsInput = screen.getByTestId((id) =>
+      id.includes('filter_author_input')
+    )
+    clearAllFiltersBtn = screen.getByTestId((id) =>
+      id.includes('filter_clear_btn')
+    )
   })
 
   afterEach(() => {

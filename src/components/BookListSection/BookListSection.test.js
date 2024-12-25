@@ -64,7 +64,9 @@ describe('BookList Component Tests', () => {
     const bookItems = within(container).getByTestId(
       `bookList_item id=${bookId}`
     )
-    const deleteBookBtn = within(bookItems).getByTestId('delete_book_btn')
+    const deleteBookBtn = within(bookItems).getByTestId((id) =>
+      id.includes('delete_book_btn')
+    )
     expect(deleteBookBtn).toBeInTheDocument()
 
     fireEvent.click(deleteBookBtn)
@@ -87,25 +89,35 @@ describe('BookList Component Tests', () => {
     const { container } = setup(BookListSection, mockedStore)
 
     const bookItem = within(container).getByTestId(`bookList_item id=${bookId}`)
-    const favoriteToggle = within(bookItem).getByTestId(
-      'book_favorite_toggle_false'
+    const favoriteToggle = within(bookItem).getByTestId((id) =>
+      id.includes('book_favorite_toggle_false')
     )
 
     // Toggle favorite on
     fireEvent.click(favoriteToggle)
     expect(
-      within(bookItem).getByTestId('book_favorite_toggle_true')
+      within(bookItem).getByTestId((id) =>
+        id.includes('book_favorite_toggle_true')
+      )
     ).toBeInTheDocument()
 
     // Try deleting the book
-    const deleteBookBtn = within(bookItem).getByTestId('delete_book_btn')
+    const deleteBookBtn = within(bookItem).getByTestId((id) =>
+      id.includes('delete_book_btn')
+    )
     fireEvent.click(deleteBookBtn)
     expect(bookItem).toBeInTheDocument()
 
     // Untoggle favorite
-    fireEvent.click(within(bookItem).getByTestId('book_favorite_toggle_true'))
+    fireEvent.click(
+      within(bookItem).getByTestId((id) =>
+        id.includes('book_favorite_toggle_true')
+      )
+    )
     expect(
-      within(bookItem).getByTestId('book_favorite_toggle_false')
+      within(bookItem).getByTestId((id) =>
+        id.includes('book_favorite_toggle_false')
+      )
     ).toBeInTheDocument()
 
     // Delete book
