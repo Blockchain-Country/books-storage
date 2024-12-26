@@ -8,13 +8,14 @@ import SearchBookSection from './components/searchBookSection/SearchBookSection'
 import RandomBookSection from './components/randomBookSection/RandomBookSection'
 import BookListSection from './components/bookListSection/BookListSection'
 import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
 import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
 import Error from './components/error/Error'
+import Alert from './components/alertMessage/Alert'
 import { syncLoadBook } from './redux/slices/booksSlice'
 import { auth } from './api/services/firebaseConfig'
 import './App.css'
-import Footer from './components/footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -60,6 +61,7 @@ function App() {
         </main>
         <Footer />
         <Error />
+        <Alert />
       </div>
     </BrowserRouter>
   )

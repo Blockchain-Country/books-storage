@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setError } from '../../redux/slices/errorSlice'
+import { setAlert } from '../../redux/slices/alertSlice'
+import BookListModal from './bookListModal/BookListModal'
 import Book from './book/Book'
-import './BookListSection.css'
 import {
   selectBook,
   syncLoadBook,
@@ -13,7 +13,7 @@ import {
   selectTitleFilter,
   selectAuthorsFilter,
 } from '../../redux/slices/filterSlice'
-import BookListModal from './bookListModal/BookListModal'
+import './BookListSection.css'
 
 const BookListSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const BookListSection = ({ 'data-testid': testId }) => {
         setIsModalOpen(false)
         setModalBook(null)
       } else {
-        dispatch(setError("Can't Delete Favorite Book!"))
+        dispatch(setAlert("Can't Delete Favorite Book!"))
       }
     }
   }
