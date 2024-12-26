@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { addBook } from '../../../redux/slices/booksSlice'
+import { syncAddBook } from '../../../redux/slices/booksSlice'
 import createBook from '../../../utils/createBook'
 import Button from '../../common/button/Button'
 import Modal from '../../common/modal/Modal'
@@ -9,7 +9,7 @@ const RandomBookModal = ({ isOpen, onClose, modalBook, isBookExist }) => {
   const dispatch = useDispatch()
 
   const handleAddBook = (book) => {
-    dispatch(addBook(createBook(book)))
+    dispatch(syncAddBook(createBook(book)))
     onClose()
   }
 

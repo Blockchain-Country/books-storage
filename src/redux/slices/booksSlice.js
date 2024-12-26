@@ -130,6 +130,7 @@ export const syncToggleFavorite = (id) => async (dispatch) => {
       const revertedToggle = { ...book, isFavorite: !book.isFavorite }
       await setDoc(bookRef, revertedToggle)
     }
+
     dispatch(toggleFavorite(id))
   } catch (error) {
     console.error('Error toggling favorite in Firebase:', error.message)

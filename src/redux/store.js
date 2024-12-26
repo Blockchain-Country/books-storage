@@ -4,6 +4,7 @@ import filterReducer from './slices/filterSlice'
 import searchBookReducer from './slices/searchBookSlice'
 import randomBooksReducer from './slices/randomBooksSlice'
 import errorReducer from './slices/errorSlice'
+import alertReducer from './slices/alertSlice'
 
 const createStore = (preloadedState) => {
   return configureStore({
@@ -13,6 +14,7 @@ const createStore = (preloadedState) => {
       booksSearch: searchBookReducer,
       randomBooks: randomBooksReducer,
       errorMessage: errorReducer,
+      alertMessage: alertReducer,
     },
     preloadedState,
   })

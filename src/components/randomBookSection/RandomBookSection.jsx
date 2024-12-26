@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RiLoader2Line } from 'react-icons/ri'
-import RandomBookModal from './randomBookModal/RandomBookModal'
 import { selectBook } from '../../redux/slices/booksSlice'
-import { setError } from '../../redux/slices/errorSlice'
+import { setAlert } from '../../redux/slices/alertSlice'
+import RandomBookModal from './randomBookModal/RandomBookModal'
 import {
   selectRandomBooks,
   selectIsLoading,
@@ -15,11 +15,11 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
   const randomBooks = useSelector(selectRandomBooks)
   const isLoading = useSelector(selectIsLoading)
+  const books = useSelector(selectBook)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isBookExist, setIsBookExist] = useState(false)
   const [modalBook, setModalBook] = useState(null)
-  const books = useSelector(selectBook)
 
   useEffect(() => {
     dispatch(getRandomBooks())
@@ -50,7 +50,7 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
     setIsModalOpen(true)
 
     if (bookExistence) {
-      dispatch(setError('You already have this book in the list!'))
+      dispatch(setAlert('You already have this book in the list!'))
     }
   }
 
@@ -69,7 +69,6 @@ const RandomBookSection = ({ 'data-testid': testId }) => {
             <img
               src={randomBooks[currentImageIndex]?.image || ''}
               alt={randomBooks[currentImageIndex]?.title || 'No book available'}
-              aria-label="Click to see book details"
               onClick={handleOpenBookModal}
               data-testid="random_book_img"
             />

@@ -11,8 +11,9 @@ const Error = () => {
 
   useEffect(() => {
     if (errorMessage?.trim()) {
-      toast.error(errorMessage)
-      dispatch(clearError())
+      toast.error(errorMessage, {
+        onClose: () => dispatch(clearError()),
+      })
     }
   }, [errorMessage, dispatch])
 

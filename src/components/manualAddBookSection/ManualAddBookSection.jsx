@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectBook, syncAddBook } from '../../redux/slices/booksSlice'
 import createBook from '../../utils/createBook'
-import './ManualAddBookSection.css'
 import { setError } from '../../redux/slices/errorSlice'
+import { setAlert } from '../../redux/slices/alertSlice'
 import Button from '../common/button/Button'
 import Input from '../common/input/Input'
+import './ManualAddBookSection.css'
 
 const ManualAddBookSection = ({ 'data-testid': testId }) => {
   const dispatch = useDispatch()
@@ -27,7 +28,7 @@ const ManualAddBookSection = ({ 'data-testid': testId }) => {
       if (!filterExistingBooks()) {
         dispatch(syncAddBook(createBook({ title, authors })))
       } else {
-        dispatch(setError('The book is already in the List!'))
+        dispatch(setAlert('The book is already in the List!'))
       }
     } else {
       dispatch(setError('Enter both Title and Author!'))
