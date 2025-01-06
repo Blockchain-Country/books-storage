@@ -1,8 +1,9 @@
 section[data-testid='bookList_section'] {
   width: 100%;
-  min-height: 38.4rem;
+  min-height: 34.2rem;
   padding: 0;
   padding-bottom: 1rem;
+  margin-bottom: 8rem;
   overflow-x: hidden;
 }
 
@@ -28,4 +29,29 @@ span[data-testid='highlighted_text'] {
   background-color: orange;
   border-radius: 5px;
   padding: 0 0.5px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  section[data-testid='bookList_section'] {
+    min-height: 30rem;
+    margin-bottom: 8rem;
+  }
+
+  p[data-testid='bookList_emptyMsg'] {
+    margin: 3rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  section[data-testid='bookList_section'] {
+    min-height: 25rem;
+    margin-bottom: 8rem;
+  }
+
+  p[data-testid='bookList_emptyMsg'] {
+    margin: 2rem;
+    font-size: 0.9rem;
+  }
 }

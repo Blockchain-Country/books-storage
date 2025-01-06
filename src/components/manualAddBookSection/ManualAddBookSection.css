@@ -4,7 +4,6 @@ form[data-testid='manualAddBook_form'] {
   align-items: center;
   width: 100%;
   gap: 1rem;
-  padding: 1rem;
 }
 
 div[data-testid*='manualAddBook_inputs_wrapper'] {

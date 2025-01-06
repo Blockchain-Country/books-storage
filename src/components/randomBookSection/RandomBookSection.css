@@ -50,9 +50,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* @media screen and (max-width: 768px) {
-  [data-testid='random_book_section'] {
-    display: none;
-  }
-} */

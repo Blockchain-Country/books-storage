@@ -11,6 +11,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
+import SignInHelp from './components/user/signInHelp/SignInHelp'
 import Error from './components/error/Error'
 import Alert from './components/alertMessage/Alert'
 import { syncLoadBook } from './redux/slices/booksSlice'
@@ -56,6 +57,7 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/sign-in-help" element={<SignInHelp />} />
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </main>
