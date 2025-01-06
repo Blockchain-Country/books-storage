@@ -54,6 +54,7 @@ export const syncLoadBook = () => async (dispatch) => {
     }
 
     const userId = auth.currentUser?.uid
+
     if (userId) {
       const booksCollectionRef = collection(db, `users/${userId}/books`)
       const querySnapshot = await getDocs(booksCollectionRef)

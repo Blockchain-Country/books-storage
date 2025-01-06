@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoArrowBackCircleOutline } from 'react-icons/io5'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import Input from '../../common/input/Input'
-import Button from '../../common/button/Button'
 import { auth } from '../../../api/services/firebaseConfig'
 import { setError } from '../../../redux/slices/errorSlice'
+import { setAlert } from '../../../redux/slices/alertSlice'
+import Input from '../../common/input/Input'
+import Button from '../../common/button/Button'
 import './Login.css'
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
   })
 
   useEffect(() => {
-    // Set up a listener to check if a user is authenticated
+    // Check if a user is authenticated
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigate('/')
@@ -41,8 +42,7 @@ const Login = () => {
         credentials.username,
         credentials.password
       )
-      console.log('User logged in!')
-      dispatch(setError('User logged in!'))
+      dispatch(setAlert('User logged in!'))
       setCredentials({ username: '', password: '' })
       navigate('/')
     } catch (error) {
@@ -59,7 +59,7 @@ const Login = () => {
         </Link>
       </div>
       <form data-testid="login_form" onSubmit={handleLogin}>
-        <h3 data-testid="login_form_title">Login</h3>
+        <h3 data-testid="login_form_title">Sign In</h3>
         <div data-testid="login_form_username_wrapper">
           <Input
             type="text"
@@ -85,7 +85,10 @@ const Login = () => {
           type="submit"
           data-testid="login_form_submit_btn"
         ></Button>
-        <Link to="/signup">Sign Up</Link>
+        <div data-testid="login_form_links">
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/sign-in-help">Having trouble signing in?</Link>
+        </div>
       </form>
     </div>
   )

@@ -111,7 +111,9 @@ const SignUp = () => {
           type="submit"
           data-testid="signup_form_submit_btn"
         ></Button>
-        <Link to="/login">Login</Link>
+        <div data-testid="signup_form_links">
+          <Link to="/login">Sign In</Link>
+        </div>
       </form>
     </div>
   )

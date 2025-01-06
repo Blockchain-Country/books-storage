@@ -28,30 +28,33 @@ const Header = () => {
 
   return (
     <header data-testid="header_container">
-      <span data-testid="header_logo">
-        <Link to="/">
-          <img src={`${process.env.PUBLIC_URL}/favicon-32x32.png`} alt="Logo" />
-        </Link>
-      </span>
-      <h1 data-testid="header_title">My Books Storage</h1>
-      <div data-testid="header_login_wrapper">
-        {isAuthenticated ? (
-          <Link to="/" data-testid="header_login_btn" onClick={handleSignOut}>
-            Sign Out
+      <div data-testid="header_wrapper">
+        <span data-testid="header_logo_and_title">
+          <Link to="/" data-testid="header_logo">
+            <img
+              src={`${process.env.PUBLIC_URL}/favicon-32x32.png`}
+              alt="Logo"
+            />
           </Link>
-        ) : (
-          location.pathname !== '/login' &&
-          location.pathname !== '/signup' && (
-            <div>
-              <Link to="/login" data-testid="header_login_btn">
-                Login
-              </Link>
-              <Link to="/signup" data-testid="header_login_btn">
-                Sign Up
-              </Link>
-            </div>
-          )
-        )}
+          <h1 data-testid="header_title">My Books Storage</h1>
+        </span>
+        <nav data-testid="header_nav">
+          {isAuthenticated && (
+            <Link to="/" data-testid="header_login_btn" onClick={handleSignOut}>
+              Sign Out
+            </Link>
+          )}
+          {!isAuthenticated && location.pathname !== '/login' && (
+            <Link to="/login" data-testid="header_login_btn">
+              Login
+            </Link>
+          )}
+          {!isAuthenticated && location.pathname !== '/signup' && (
+            <Link to="/signup" data-testid="header_login_btn">
+              Sign Up
+            </Link>
+          )}
+        </nav>
       </div>
     </header>
   )

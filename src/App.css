@@ -4,9 +4,8 @@
   height: 100%;
   width: 80%;
   gap: 2rem;
-  padding-top: 9rem;
-  padding-bottom: 2rem;
-  margin: auto;
+  /* padding-top: 9rem; */
+  margin: 9rem auto;
   font-size: 1.5rem;
 }
 
@@ -28,7 +27,6 @@
 [data-testid='search_book_section'],
 [data-testid='manualAddBook_section'],
 [data-testid='random_book_section'],
-[data-testid='random_book_section'],
 [data-testid='filters_section'],
 [data-testid='bookList_section'] {
   display: flex;
@@ -43,10 +41,9 @@
 
 @media screen and (max-width: 768px) {
   [data-testid='app_main'] {
-    width: 100%;
+    width: 90%;
     flex-direction: column;
     justify-content: start;
-    padding-top: 13rem;
     gap: 1rem;
   }
 
@@ -60,9 +57,27 @@
   [data-testid='manualAddBook_section'],
   [data-testid='filters_section'],
   [data-testid='bookList_section'] {
-    padding: 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  [data-testid='random_book_section'] {
+    display: none;
   }
 }
+
+@media screen and (max-width: 480px) {
+  [data-testid='app_main'] {
+    width: 95%;
+  }
+
+  [data-testid='search_book_section'],
+  [data-testid='manualAddBook_section'],
+  [data-testid='filters_section'],
+  [data-testid='bookList_section'] {
+    font-size: 1rem;
+  }
+}
+
 /* 
 .language-selector {
   position: absolute;
